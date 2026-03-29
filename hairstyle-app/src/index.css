@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0a0a0a;
+    color: #f5f0e8;
+    overscroll-behavior-y: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100svh;
+    background-color: #0a0a0a;
+    position: relative;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .gold-gradient {
+    background: linear-gradient(135deg, #c9a84c 0%, #f0d060 50%, #c9a84c 100%);
+  }
+  .text-gold {
+    color: #c9a84c;
+  }
+  .bg-gold {
+    background-color: #c9a84c;
+  }
+  .border-gold {
+    border-color: #c9a84c;
+  }
+  .bg-surface {
+    background-color: #1a1a1a;
+  }
+  .bg-card {
+    background-color: #141414;
+  }
+  .active-scale {
+    transition: transform 0.15s ease;
+  }
+  .active-scale:active {
+    transform: scale(0.96);
+  }
+}

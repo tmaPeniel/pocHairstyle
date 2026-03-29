@@ -1,0 +1,28 @@
+[
+  {
+    "id": "b1",
+    "stylistId": "1",
+    "stylistName": "Amara Diallo",
+    "serviceId": "1",
+    "serviceName": "Box Braids",
+    "date": "2026-04-05",
+    "time": "10:00",
+    "price": 80,
+    "deposit": 20,
+    "status": "confirmed",
+    "address": "12 Rue de la Roquette, Paris 11e"
+  },
+  {
+    "id": "b2",
+    "stylistId": "2",
+    "stylistName": "Sofia Benali",
+    "serviceId": "4",
+    "serviceName": "Lissage Brésilien",
+    "date": "2026-04-12",
+    "time": "14:00",
+    "price": 120,
+    "deposit": 30,
+    "status": "pending",
+    "address": "8 Avenue Émile Zola, Paris 15e"
+  }
+]

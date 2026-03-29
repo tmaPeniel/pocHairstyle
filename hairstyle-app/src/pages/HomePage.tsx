@@ -22,33 +22,36 @@ export default function HomePage() {
     ? hairstylists.filter(s => s.categories.includes(selectedCategory))
     : hairstylists
 
-  const handleCategorySelect = (cat: string) => {
-    setSelectedCategory(cat)
-  }
-
   return (
     <div className="pb-24">
+
+      {/* 1. Header */}
       <Header />
 
-      {/* Hero greeting */}
-      <div className="px-4 mb-5">
-        <p className="text-xs text-gold mb-1 font-medium tracking-widest uppercase">Bonjour 👋</p>
-        <h1 className="text-2xl font-bold leading-tight" style={{ color: '#f5f0e8' }}>
-          Quelle coiffure<br/>
-          <span className="text-gold">tu veux aujourd'hui ?</span>
-        </h1>
+      {/* 2. Search bar */}
+      <div className="pt-2 pb-1">
+        <SearchBar />
       </div>
 
-      <SearchBar />
-      <CategoryCarousel selected={selectedCategory} onSelect={handleCategorySelect} />
-      <PromoBanner />
-      <HairstyleCarousel onSelect={handleCategorySelect} />
+      {/* 3. Catégories */}
+      <CategoryCarousel selected={selectedCategory} onSelect={setSelectedCategory} />
 
-      {/* Coiffeuses proches */}
+      {/* 4. Offre du moment */}
+      <PromoBanner />
+
+      {/* 5. Styles populaires */}
+      <HairstyleCarousel onSelect={setSelectedCategory} />
+
+      {/* 6. Coiffeuses près de vous */}
       <div className="mb-6">
         <div className="flex items-center justify-between px-4 mb-3">
-          <h2 className="text-base font-semibold" style={{ color: '#f5f0e8' }}>Coiffeuses proches</h2>
-          <button onClick={() => navigate('/hairstylists')} className="text-xs font-medium text-gold active-scale">
+          <h2 className="text-base font-semibold flex items-center gap-1.5" style={{ color: '#f5f0e8' }}>
+            <span>📍</span> Coiffeuses près de vous
+          </h2>
+          <button
+            onClick={() => navigate('/hairstylists')}
+            className="text-xs font-medium text-gold active-scale"
+          >
             See all →
           </button>
         </div>
@@ -59,15 +62,14 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Filtered list */}
+      {/* 7. Liste principale — Coiffeuses disponibles */}
       <div className="px-4">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold" style={{ color: '#f5f0e8' }}>
-            {selectedCategory ? (
-              <span>Résultats pour : <span className="text-gold">{selectedCategory}</span></span>
-            ) : (
-              'Toutes les coiffeuses'
-            )}
+            {selectedCategory
+              ? <>Résultats pour : <span className="text-gold">{selectedCategory}</span></>
+              : 'Coiffeuses disponibles'
+            }
           </h2>
           {selectedCategory && (
             <button
@@ -91,6 +93,7 @@ export default function HomePage() {
           ))
         )}
       </div>
+
     </div>
   )
 }

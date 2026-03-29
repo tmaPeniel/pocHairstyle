@@ -22,7 +22,9 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between px-4 mb-3">
-        <h2 className="text-base font-semibold" style={{ color: '#f5f0e8' }}>Styles populaires</h2>
+        <h2 className="text-base font-semibold flex items-center gap-1.5" style={{ color: '#f5f0e8' }}>
+            <span>🔥</span> Styles populaires
+          </h2>
         <button
           onClick={() => navigate('/hairstyles')}
           className="text-xs font-medium text-gold active-scale"

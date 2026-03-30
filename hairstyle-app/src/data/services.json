@@ -1,0 +1,83 @@
+[
+  {
+    "id": "1",
+    "name": "Box Braids",
+    "category": "Tresses",
+    "description": "Tresses individuelles classiques, longues ou courtes selon votre préférence.",
+    "price": 80,
+    "duration": "4-6h",
+    "image": "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "2",
+    "name": "Knotless Braids",
+    "category": "Tresses",
+    "description": "Tresses sans nœuds, moins de tension sur le cuir chevelu, résultat naturel.",
+    "price": 100,
+    "duration": "5-7h",
+    "image": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "3",
+    "name": "Locks Démarrées",
+    "category": "Locks",
+    "description": "Démarrage de locks naturelles sur tous types de cheveux afro.",
+    "price": 110,
+    "duration": "5-8h",
+    "image": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "4",
+    "name": "Lissage Brésilien",
+    "category": "Lissage",
+    "description": "Lissage semi-permanent avec produits brésiliens premium. Dure 3-4 mois.",
+    "price": 120,
+    "duration": "3-4h",
+    "image": "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "5",
+    "name": "Kératine",
+    "category": "Lissage",
+    "description": "Traitement kératine professionnel pour un lissage longue durée (4-6 mois).",
+    "price": 150,
+    "duration": "4-5h",
+    "image": "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "6",
+    "name": "Pose Perruque Frontale",
+    "category": "Perruques",
+    "description": "Pose de perruque full lace ou lace front, colle et finitions incluses.",
+    "price": 80,
+    "duration": "2-3h",
+    "image": "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "7",
+    "name": "Perruque Sur Mesure",
+    "category": "Perruques",
+    "description": "Confection et pose de perruque personnalisée selon vos souhaits.",
+    "price": 200,
+    "duration": "4-6h",
+    "image": "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "8",
+    "name": "Tresses Collées",
+    "category": "Tresses",
+    "description": "Tresses plaquées avec ou sans extension, style africain traditionnel.",
+    "price": 55,
+    "duration": "2-3h",
+    "image": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop"
+  },
+  {
+    "id": "9",
+    "name": "Entretien Locks",
+    "category": "Locks",
+    "description": "Retouche et entretien de vos locks existantes pour un rendu soigné.",
+    "price": 60,
+    "duration": "2-3h",
+    "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&h=200&fit=crop"
+  }
+]

@@ -33,16 +33,15 @@ export default function HomePage() {
         <SearchBar />
       </div>
 
-      {/* 3. Catégories */}
-      <CategoryCarousel selected={selectedCategory} onSelect={setSelectedCategory} />
+      
 
-      {/* 4. Offre du moment */}
+      {/* 3. Offre du moment */}
       <PromoBanner />
 
-      {/* 5. Styles populaires */}
+      {/* 4. Styles populaires */}
       <HairstyleCarousel onSelect={setSelectedCategory} />
 
-      {/* 6. Coiffeuses près de vous */}
+      {/* 5. Coiffeuses près de vous */}
       <div className="mb-6">
         <div className="flex items-center justify-between px-4 mb-3">
           <h2 className="text-base font-semibold flex items-center gap-1.5" style={{ color: '#f5f0e8' }}>
@@ -61,6 +60,9 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* 6. Catégories */}
+      <CategoryCarousel selected={selectedCategory} onSelect={setSelectedCategory} />
 
       {/* 7. Liste principale — Coiffeuses disponibles */}
       <div className="px-4">

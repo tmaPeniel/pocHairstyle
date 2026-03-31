@@ -23,13 +23,13 @@ export default function HomePage() {
     : hairstylists
 
   return (
-    <div className="pb-24">
+    <div className="pb-24" style={{ background: 'var(--bg)' }}>
 
       {/* 1. Header */}
       <Header />
 
       {/* 2. Search bar */}
-      <div className="pt-2 pb-1">
+      <div className="pt-3">
         <SearchBar />
       </div>
 
@@ -38,18 +38,19 @@ export default function HomePage() {
       {/* 3. Offre du moment */}
       <PromoBanner />
 
-      {/* 4. Styles populaires */}
+      {/* 4. 🔥 Styles populaires */}
       <HairstyleCarousel onSelect={setSelectedCategory} />
 
-      {/* 5. Coiffeuses près de vous */}
+      {/* 5. 📍 Coiffeuses près de vous */}
       <div className="mb-6">
         <div className="flex items-center justify-between px-4 mb-3">
-          <h2 className="text-base font-semibold flex items-center gap-1.5" style={{ color: '#f5f0e8' }}>
-            <span>📍</span> Coiffeuses près de vous
+          <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', display: 'flex', alignItems: 'center', gap: 6 }}>
+            📍 Coiffeuses près de vous
           </h2>
           <button
             onClick={() => navigate('/hairstylists')}
-            className="text-xs font-medium text-gold active-scale"
+            style={{ fontSize: 12, fontWeight: 600, color: 'var(--gold)', fontFamily: 'Inter' }}
+            className="active-scale"
           >
             See all →
           </button>
@@ -67,17 +68,27 @@ export default function HomePage() {
       {/* 7. Liste principale — Coiffeuses disponibles */}
       <div className="px-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-semibold" style={{ color: '#f5f0e8' }}>
-            {selectedCategory
-              ? <>Résultats pour : <span className="text-gold">{selectedCategory}</span></>
-              : 'Coiffeuses disponibles'
-            }
+          <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+            {selectedCategory ? (
+              <>Résultats : <span style={{ color: 'var(--gold)' }}>{selectedCategory}</span></>
+            ) : (
+              'Coiffeuses disponibles'
+            )}
           </h2>
           {selectedCategory && (
             <button
               onClick={() => setSelectedCategory('')}
-              className="text-xs px-3 py-1 rounded-full font-medium active-scale"
-              style={{ background: '#1a1a1a', color: '#888', border: '1px solid #2a2a2a' }}
+              className="active-scale"
+              style={{
+                fontSize: 11,
+                fontWeight: 500,
+                color: 'var(--text-2)',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                borderRadius: 99,
+                padding: '4px 12px',
+                fontFamily: 'Inter',
+              }}
             >
               Réinitialiser
             </button>
@@ -85,17 +96,36 @@ export default function HomePage() {
         </div>
 
         {filteredStylists.length === 0 ? (
-          <div className="text-center py-10">
-            <p className="text-2xl mb-2">😔</p>
-            <p className="text-sm" style={{ color: '#666' }}>Aucune coiffeuse pour cette catégorie</p>
+          <div className="flex flex-col items-center py-12 gap-3">
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center"
+              style={{ background: 'var(--surface)' }}
+            >
+              <span style={{ fontSize: 28 }}>😔</span>
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Inter' }}>
+              Aucune coiffeuse pour cette catégorie
+            </p>
+            <button
+              onClick={() => setSelectedCategory('')}
+              className="active-scale"
+              style={{
+                fontSize: 13,
+                fontWeight: 600,
+                color: '#1A1A1A',
+                background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)',
+                borderRadius: 12,
+                padding: '10px 24px',
+                fontFamily: 'Inter',
+              }}
+            >
+              Voir toutes les coiffeuses
+            </button>
           </div>
         ) : (
-          filteredStylists.map(s => (
-            <HairstylistCard key={s.id} stylist={s} />
-          ))
+          filteredStylists.map(s => <HairstylistCard key={s.id} stylist={s} />)
         )}
       </div>
-
     </div>
   )
 }

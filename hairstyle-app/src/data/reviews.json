@@ -1,0 +1,101 @@
+[
+  {
+    "id": "r1",
+    "stylistId": "1",
+    "serviceId": "1",
+    "author": "Kiara M.",
+    "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face",
+    "rating": 5,
+    "date": "2026-03-15",
+    "comment": "Amara est une artiste ! Mes box braids sont parfaites, elle a été super douce et rapide. Je recommande vraiment les yeux fermés.",
+    "serviceLabel": "Box Braids"
+  },
+  {
+    "id": "r2",
+    "stylistId": "1",
+    "serviceId": "2",
+    "author": "Naomi T.",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face",
+    "rating": 5,
+    "date": "2026-03-08",
+    "comment": "Résultat impeccable, knotless braids super bien faites. Amara est ponctuelle, professionnelle et super sympa !",
+    "serviceLabel": "Knotless Braids"
+  },
+  {
+    "id": "r3",
+    "stylistId": "1",
+    "serviceId": "1",
+    "author": "Lisa D.",
+    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face",
+    "rating": 4,
+    "date": "2026-02-20",
+    "comment": "Très bon service à domicile. Les tresses ont tenu plus de 6 semaines. Quelques petits ajustements mais globalement très satisfaite.",
+    "serviceLabel": "Box Braids"
+  },
+  {
+    "id": "r4",
+    "stylistId": "2",
+    "serviceId": "4",
+    "author": "Céline B.",
+    "avatar": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80&h=80&fit=crop&crop=face",
+    "rating": 5,
+    "date": "2026-03-20",
+    "comment": "Sofia est une experte du lissage ! Résultat super naturel, mes cheveux sont soyeux depuis 2 mois. Vraiment top.",
+    "serviceLabel": "Lissage Brésilien"
+  },
+  {
+    "id": "r5",
+    "stylistId": "2",
+    "serviceId": "5",
+    "author": "Manon R.",
+    "avatar": "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?w=80&h=80&fit=crop&crop=face",
+    "rating": 5,
+    "date": "2026-03-05",
+    "comment": "Kératine incroyable, fini les frisottis ! Sofia se déplace avec tout son matériel, c'est super pratique.",
+    "serviceLabel": "Kératine"
+  },
+  {
+    "id": "r6",
+    "stylistId": "3",
+    "serviceId": "6",
+    "author": "Aïcha K.",
+    "avatar": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&h=80&fit=crop&crop=face",
+    "rating": 4,
+    "date": "2026-03-10",
+    "comment": "Nadia est très professionnelle pour la pose de perruque. Résultat très naturel, je recommande.",
+    "serviceLabel": "Pose Perruque Frontale"
+  },
+  {
+    "id": "r7",
+    "stylistId": "4",
+    "serviceId": "1",
+    "author": "Bintou S.",
+    "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face",
+    "rating": 5,
+    "date": "2026-03-25",
+    "comment": "Fatou est LA référence pour les tresses ! 12 ans d'expérience ça se voit, résultat parfait à chaque fois.",
+    "serviceLabel": "Box Braids"
+  },
+  {
+    "id": "r8",
+    "stylistId": "4",
+    "serviceId": "8",
+    "author": "Aminata D.",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face",
+    "rating": 5,
+    "date": "2026-03-18",
+    "comment": "Les tresses collées de Fatou sont sublimes ! Elle maîtrise parfaitement les motifs africains. Un vrai talent.",
+    "serviceLabel": "Tresses Collées"
+  },
+  {
+    "id": "r9",
+    "stylistId": "5",
+    "serviceId": "3",
+    "author": "Sarah L.",
+    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face",
+    "rating": 5,
+    "date": "2026-03-22",
+    "comment": "Céleste a démarré mes locks avec tellement de soin et de précision. Vraiment passionnée par son travail !",
+    "serviceLabel": "Locks Démarrées"
+  }
+]

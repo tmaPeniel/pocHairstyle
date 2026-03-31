@@ -5,15 +5,10 @@ interface HairstyleCarouselProps {
   onSelect?: (category: string) => void
 }
 
-const badgeColors: Record<string, string> = {
-  Populaire: 'rgba(201,168,76,0.15)',
-  Premium: 'rgba(147,51,234,0.2)',
-  Tendance: 'rgba(239,68,68,0.15)',
-}
-const badgeTextColors: Record<string, string> = {
-  Populaire: '#c9a84c',
-  Premium: '#c084fc',
-  Tendance: '#f87171',
+const badgeStyle: Record<string, { bg: string; color: string }> = {
+  Populaire: { bg: 'rgba(201,168,76,0.18)', color: '#B8850A' },
+  Premium:   { bg: 'rgba(139,92,246,0.15)', color: '#7C3AED' },
+  Tendance:  { bg: 'rgba(239,68,68,0.12)',  color: '#DC2626' },
 }
 
 export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) {
@@ -22,38 +17,38 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between px-4 mb-3">
-        <h2 className="text-base font-semibold flex items-center gap-1.5" style={{ color: '#f5f0e8' }}>
-            <span>🔥</span> Styles populaires
-          </h2>
+        <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', display: 'flex', alignItems: 'center', gap: 6 }}>
+          🔥 Styles populaires
+        </h2>
         <button
           onClick={() => navigate('/hairstyles')}
-          className="text-xs font-medium text-gold active-scale"
+          style={{ fontSize: 12, fontWeight: 600, color: 'var(--gold)' }}
+          className="active-scale"
         >
           See all →
         </button>
       </div>
+
       <div className="flex gap-3 px-4 overflow-x-auto no-scrollbar pb-1">
         {hairstyles.map(style => (
           <div
             key={style.id}
-            onClick={() => onSelect ? onSelect(style.category) : navigate(`/hairstyles`)}
+            onClick={() => onSelect ? onSelect(style.category) : navigate('/hairstyles')}
             className="flex-shrink-0 w-36 rounded-2xl overflow-hidden cursor-pointer active-scale"
-            style={{ background: '#141414', border: '1px solid #1f1f1f' }}
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
           >
             <div className="relative h-44">
-              <img
-                src={style.image}
-                alt={style.name}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+              <img src={style.image} alt={style.name} className="w-full h-full object-cover" loading="lazy" />
               {style.badge && (
                 <div
-                  className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-xs font-semibold backdrop-blur-sm"
+                  className="absolute top-2 left-2 px-2 py-0.5 rounded-full backdrop-blur-sm"
                   style={{
-                    background: badgeColors[style.badge] || 'rgba(0,0,0,0.5)',
-                    color: badgeTextColors[style.badge] || '#fff',
-                    border: `1px solid ${badgeTextColors[style.badge] || '#fff'}40`,
+                    background: badgeStyle[style.badge]?.bg ?? 'rgba(0,0,0,0.45)',
+                    color: badgeStyle[style.badge]?.color ?? '#fff',
+                    fontSize: 10,
+                    fontWeight: 700,
+                    fontFamily: 'Inter',
+                    border: `1px solid ${badgeStyle[style.badge]?.color ?? '#fff'}30`,
                   }}
                 >
                   {style.badge}
@@ -61,12 +56,16 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
               )}
             </div>
             <div className="p-2.5">
-              <p className="text-xs font-semibold mb-0.5 truncate" style={{ color: '#f5f0e8' }}>{style.name}</p>
+              <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 4 }} className="truncate">
+                {style.name}
+              </p>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-gold">À partir de {style.startingPrice}€</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Inter' }}>
+                  dès {style.startingPrice}€
+                </span>
                 <div className="flex items-center gap-0.5">
-                  <span className="text-yellow-400 text-xs">★</span>
-                  <span className="text-xs" style={{ color: '#888' }}>{style.rating}</span>
+                  <span style={{ color: '#F59E0B', fontSize: 11 }}>★</span>
+                  <span style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Inter' }}>{style.rating}</span>
                 </div>
               </div>
             </div>

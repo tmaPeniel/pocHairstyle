@@ -1,88 +1,147 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import CategoryCarousel from '../components/CategoryCarousel'
 import hairstyles from '../data/hairstyles.json'
 
-const badgeColors: Record<string, string> = {
-  Populaire: 'rgba(201,168,76,0.15)',
-  Premium: 'rgba(147,51,234,0.2)',
-  Tendance: 'rgba(239,68,68,0.15)',
-}
-const badgeTextColors: Record<string, string> = {
-  Populaire: '#c9a84c',
-  Premium: '#c084fc',
-  Tendance: '#f87171',
+type SortKey = 'popular' | 'price_asc' | 'price_desc'
+
+const SORT_OPTIONS: { key: SortKey; label: string }[] = [
+  { key: 'popular',    label: 'Popularité' },
+  { key: 'price_asc',  label: 'Prix ↑' },
+  { key: 'price_desc', label: 'Prix ↓' },
+]
+
+const badgeStyle: Record<string, { bg: string; color: string }> = {
+  Populaire: { bg: 'rgba(201,168,76,0.18)', color: '#B8850A' },
+  Premium:   { bg: 'rgba(139,92,246,0.15)', color: '#7C3AED' },
+  Tendance:  { bg: 'rgba(239,68,68,0.12)',  color: '#DC2626' },
 }
 
 export default function HairstyleListPage() {
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [sort, setSort] = useState<SortKey>('popular')
   const navigate = useNavigate()
 
-  const filtered = selectedCategory
-    ? hairstyles.filter(s => s.category === selectedCategory)
-    : hairstyles
+  const filtered = useMemo(() => {
+    let list = [...hairstyles]
+    if (selectedCategory) list = list.filter(s => s.category === selectedCategory)
+    if (sort === 'price_asc')  list.sort((a, b) => a.startingPrice - b.startingPrice)
+    if (sort === 'price_desc') list.sort((a, b) => b.startingPrice - a.startingPrice)
+    if (sort === 'popular')    list.sort((a, b) => b.reviewCount - a.reviewCount)
+    return list
+  }, [selectedCategory, sort])
 
   return (
-    <div className="pb-24">
+    <div className="pb-24" style={{ background: 'var(--bg)' }}>
       <Header title="Styles" showBack />
+
       <div className="pt-4">
         <CategoryCarousel selected={selectedCategory} onSelect={setSelectedCategory} />
 
-        <div className="px-4">
-          {selectedCategory && (
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-gold font-medium">Résultats pour : {selectedCategory}</p>
-              <button
-                onClick={() => setSelectedCategory('')}
-                className="text-xs px-3 py-1 rounded-full active-scale"
-                style={{ background: '#1a1a1a', color: '#888', border: '1px solid #2a2a2a' }}
-              >
-                Réinitialiser
-              </button>
-            </div>
-          )}
+        {/* Sort bar */}
+        <div className="px-4 mb-4 flex items-center gap-2 overflow-x-auto no-scrollbar">
+          {SORT_OPTIONS.map(opt => (
+            <button
+              key={opt.key}
+              onClick={() => setSort(opt.key)}
+              className="flex-shrink-0 px-3.5 py-2 rounded-full active-scale"
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                fontFamily: 'Inter',
+                background: sort === opt.key ? 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)' : 'var(--surface)',
+                color: sort === opt.key ? '#1A1A1A' : 'var(--text-2)',
+                border: sort === opt.key ? '1.5px solid transparent' : '1.5px solid var(--border)',
+                boxShadow: sort === opt.key ? '0 2px 8px rgba(201,168,76,0.3)' : 'none',
+              }}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            {filtered.map(style => (
-              <div
-                key={style.id}
-                onClick={() => navigate(`/hairstylists?category=${style.category}`)}
-                className="rounded-2xl overflow-hidden cursor-pointer active-scale"
-                style={{ background: '#141414', border: '1px solid #1f1f1f' }}
-              >
-                <div className="relative h-48">
-                  <img src={style.image} alt={style.name} className="w-full h-full object-cover" loading="lazy"/>
-                  {style.badge && (
-                    <div
-                      className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-xs font-semibold backdrop-blur-sm"
-                      style={{
-                        background: badgeColors[style.badge] || 'rgba(0,0,0,0.5)',
-                        color: badgeTextColors[style.badge] || '#fff',
-                        border: `1px solid ${badgeTextColors[style.badge] || '#fff'}40`,
-                      }}
-                    >
-                      {style.badge}
-                    </div>
-                  )}
-                  <div className="absolute bottom-0 left-0 right-0 p-2.5"
-                    style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%)' }}>
-                    <p className="text-sm font-semibold text-white">{style.name}</p>
-                    <div className="flex items-center justify-between mt-0.5">
-                      <span className="text-xs font-bold text-gold">dès {style.startingPrice}€</span>
-                      <div className="flex items-center gap-0.5">
-                        <span className="text-yellow-400 text-xs">★</span>
-                        <span className="text-xs text-white">{style.rating}</span>
-                      </div>
+        {/* Result count */}
+        <div className="px-4 mb-4 flex items-center justify-between">
+          <p style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Inter' }}>
+            <span style={{ fontWeight: 700, color: 'var(--text-1)' }}>{filtered.length}</span> style{filtered.length > 1 ? 's' : ''}
+            {selectedCategory && <span style={{ color: 'var(--gold)', fontWeight: 600 }}> · {selectedCategory}</span>}
+          </p>
+          {selectedCategory && (
+            <button
+              onClick={() => setSelectedCategory('')}
+              style={{
+                fontSize: 11, fontWeight: 500, color: 'var(--text-2)',
+                background: 'var(--surface)', border: '1px solid var(--border)',
+                borderRadius: 99, padding: '3px 10px', fontFamily: 'Inter',
+              }}
+              className="active-scale"
+            >
+              Réinitialiser ✕
+            </button>
+          )}
+        </div>
+
+        {/* Grid */}
+        <div className="px-4 grid grid-cols-2 gap-3">
+          {filtered.map(style => (
+            <div
+              key={style.id}
+              onClick={() => navigate(`/hairstylists?category=${style.category}`)}
+              className="rounded-2xl overflow-hidden cursor-pointer active-scale"
+              style={{
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+            >
+              {/* Image */}
+              <div className="relative" style={{ height: 180 }}>
+                <img src={style.image} alt={style.name} className="w-full h-full object-cover" loading="lazy" />
+
+                {style.badge && (
+                  <div
+                    className="absolute top-2 left-2 px-2 py-0.5 rounded-full backdrop-blur-sm"
+                    style={{
+                      background: badgeStyle[style.badge]?.bg ?? 'rgba(0,0,0,0.5)',
+                      color: badgeStyle[style.badge]?.color ?? '#fff',
+                      fontSize: 10, fontWeight: 700, fontFamily: 'Inter',
+                      border: `1px solid ${badgeStyle[style.badge]?.color ?? '#fff'}30`,
+                    }}
+                  >
+                    {style.badge}
+                  </div>
+                )}
+
+                {/* Bottom gradient overlay */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 px-2.5 pb-2.5 pt-8"
+                  style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)' }}
+                >
+                  <p style={{ fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'Inter' }}>{style.name}</p>
+                  <div className="flex items-center justify-between mt-0.5">
+                    <span style={{ fontSize: 11, fontWeight: 700, color: '#F0D060', fontFamily: 'Inter' }}>
+                      dès {style.startingPrice}€
+                    </span>
+                    <div className="flex items-center gap-0.5">
+                      <span style={{ color: '#F59E0B', fontSize: 11 }}>★</span>
+                      <span style={{ fontSize: 11, color: '#fff', fontFamily: 'Inter' }}>{style.rating}</span>
                     </div>
                   </div>
                 </div>
-                <div className="px-2.5 py-2">
-                  <p className="text-xs" style={{ color: '#666' }}>{style.duration} · {style.reviewCount} avis</p>
-                </div>
               </div>
-            ))}
-          </div>
+
+              {/* Footer */}
+              <div className="px-2.5 py-2 flex items-center justify-between">
+                <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Inter' }}>
+                  {style.duration}
+                </p>
+                <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Inter' }}>
+                  {style.reviewCount} avis
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

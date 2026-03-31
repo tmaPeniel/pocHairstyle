@@ -8,32 +8,43 @@ export default function PromoBanner() {
       <div
         className="relative overflow-hidden rounded-2xl"
         style={{
-          background: 'linear-gradient(135deg, #1a0e00 0%, #2d1a00 60%, #1f1200 100%)',
-          border: '1px solid rgba(201,168,76,0.3)',
-          minHeight: '140px',
+          background: 'linear-gradient(135deg, #1A0E00 0%, #3A2200 60%, #1A0E00 100%)',
+          minHeight: 140,
+          boxShadow: '0 4px 24px rgba(201,168,76,0.18)',
         }}
       >
-        {/* Left — text content */}
-        <div className="relative z-10 p-5 pr-2" style={{ maxWidth: '62%' }}>
+        {/* Left — content */}
+        <div className="relative z-10 p-5" style={{ maxWidth: '60%' }}>
           <div
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full mb-2.5"
-            style={{ background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.3)' }}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full mb-3"
+            style={{
+              background: 'rgba(201,168,76,0.18)',
+              border: '1px solid rgba(201,168,76,0.35)',
+            }}
           >
-            <span className="text-xs font-semibold text-gold">🎁 Offre du moment</span>
+            <span style={{ fontSize: 11, fontWeight: 700, color: '#C9A84C', fontFamily: 'Inter' }}>
+              🎁 Offre du moment
+            </span>
           </div>
 
-          <h3 className="text-xl font-bold leading-tight mb-1" style={{ color: '#f5f0e8' }}>
-            <span className="text-gold">-20%</span> sur<br />les tresses
+          <h3 style={{ fontSize: 20, fontWeight: 800, color: '#fff', lineHeight: 1.2, marginBottom: 4, fontFamily: 'Inter' }}>
+            <span style={{ color: '#F0D060' }}>-20%</span> sur<br />les tresses
           </h3>
 
-          <p className="text-[11px] mb-3.5" style={{ color: '#888' }}>
+          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginBottom: 14, fontFamily: 'Inter' }}>
             Du 25 → 30 mars 2026
           </p>
 
           <button
             onClick={() => navigate('/hairstylists?category=Tresses')}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold active-scale"
-            style={{ background: 'linear-gradient(135deg, #c9a84c 0%, #f0d060 100%)', color: '#000' }}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl active-scale"
+            style={{
+              background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)',
+              color: '#1A1A1A',
+              fontSize: 12,
+              fontWeight: 700,
+              fontFamily: 'Inter',
+            }}
           >
             Réserver maintenant
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -43,18 +54,17 @@ export default function PromoBanner() {
         </div>
 
         {/* Right — image */}
-        <div className="absolute top-0 right-0 bottom-0 w-[42%]">
+        <div className="absolute top-0 right-0 bottom-0" style={{ width: '44%' }}>
           <img
             src="https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=300&h=300&fit=crop&crop=face"
             alt="Box braids"
             className="w-full h-full object-cover"
             style={{ borderRadius: '0 16px 16px 0' }}
           />
-          {/* Dark fade from left so text stays readable */}
           <div
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(to right, #2d1a00 0%, transparent 60%)',
+              background: 'linear-gradient(to right, #3A2200 0%, transparent 55%)',
               borderRadius: '0 16px 16px 0',
             }}
           />

@@ -15,46 +15,55 @@ export default function Header({ title, showBack = false, transparent = false, a
       className="sticky top-0 z-40 flex items-center justify-between px-4 py-3"
       style={{
         background: transparent
-          ? 'linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, transparent 100%)'
-          : '#0a0a0a',
-        backdropFilter: transparent ? 'blur(8px)' : 'none',
+          ? 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, transparent 100%)'
+          : 'rgba(255,255,255,0.95)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: transparent ? 'none' : '1px solid var(--border)',
       }}
     >
       {showBack ? (
         <button
           onClick={() => navigate(-1)}
           className="w-9 h-9 flex items-center justify-center rounded-full active-scale"
-          style={{ background: 'rgba(255,255,255,0.08)' }}
+          style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5f0e8" strokeWidth="2">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-1)" strokeWidth="2.2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
       ) : (
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full gold-gradient flex items-center justify-center">
-            <span className="text-black font-bold text-xs">H</span>
+          <div className="w-8 h-8 rounded-xl gold-gradient flex items-center justify-center shadow-sm">
+            <span style={{ color: '#1A1A1A', fontWeight: 800, fontSize: 13, fontFamily: 'Inter' }}>H</span>
           </div>
-          <span className="font-semibold text-sm tracking-wide" style={{ color: '#f5f0e8' }}>
+          <span style={{ fontWeight: 700, fontSize: 15, color: 'var(--text-1)', letterSpacing: '-0.3px' }}>
             Hairly
           </span>
         </div>
       )}
 
       {title && (
-        <h1 className="absolute left-1/2 -translate-x-1/2 text-sm font-semibold" style={{ color: '#f5f0e8' }}>
+        <h1
+          className="absolute left-1/2 -translate-x-1/2"
+          style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-1)' }}
+        >
           {title}
         </h1>
       )}
 
       {action || (
         !showBack && (
-          <button className="w-9 h-9 flex items-center justify-center rounded-full relative active-scale"
-            style={{ background: 'rgba(255,255,255,0.08)' }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5f0e8" strokeWidth="1.8">
-              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
+          <button
+            className="w-9 h-9 flex items-center justify-center rounded-full relative active-scale"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+          >
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text-1)" strokeWidth="1.8">
+              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
             </svg>
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-gold"/>
+            <span
+              className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
+              style={{ background: 'var(--gold)', border: '1.5px solid white' }}
+            />
           </button>
         )
       )}

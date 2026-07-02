@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/user/Desktop/Projet/ProjectWeb/ProjetWinnie/pocHairstyle/hairstyle-app -name api* -o -name server* -o -name backend*)",
+      "Read(//c/Users/user/Desktop/Projet/ProjectWeb/ProjetWinnie/pocHairstyle/**)"
+    ]
+  }
+}

@@ -23,11 +23,11 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
     return (
       <div
         onClick={() => navigate(`/hairstylist/${stylist.id}`)}
-        className="flex-shrink-0 w-32 cursor-pointer active-scale"
+        className="w-full cursor-pointer active-scale"
       >
         <div
-          className="relative w-32 h-32 rounded-2xl overflow-hidden mb-2"
-          style={{ border: '1.5px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
+          className="relative w-full rounded-2xl overflow-hidden mb-2"
+          style={{ aspectRatio: '1 / 1', border: '1.5px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
         >
           <img src={stylist.image} alt={stylist.name} className="w-full h-full object-cover" loading="lazy" />
           {/* Online dot */}
@@ -64,7 +64,7 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
         <img
           src={stylist.image}
           alt={stylist.name}
-          className="w-16 h-16 rounded-xl object-cover"
+          className="w-16 h-16 rounded-full object-cover"
         />
         <div
           className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full"

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+﻿import { useState, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
@@ -9,24 +9,19 @@ import hairstylists from '../data/hairstylists.json'
 type SortKey = 'rating' | 'price_asc' | 'price_desc'
 
 const SORT_LABELS: Record<SortKey, string> = {
-  rating:     'Mieux notées',
+  rating:     'Mieux notÃ©es',
   price_asc:  'Prix croissant',
-  price_desc: 'Prix décroissant',
+  price_desc: 'Prix dÃ©croissant',
 }
 
 export default function HairstylistListPage() {
-  const [selectedCategory, setSelectedCategory] = useState('')
-  const [query, setQuery] = useState('')
   const [sort, setSort] = useState<SortKey>('rating')
   const [showSort, setShowSort] = useState(false)
   const [searchParams] = useSearchParams()
-
-  useEffect(() => {
-    const cat = searchParams.get('category')
-    const q = searchParams.get('q')
-    if (cat) setSelectedCategory(cat)
-    if (q) setQuery(q)
-  }, [searchParams])
+  const [manualCategory, setManualCategory] = useState<string | null>(null)
+  const [manualQuery, setManualQuery] = useState<string | null>(null)
+  const selectedCategory = manualCategory ?? searchParams.get('category') ?? ''
+  const query = manualQuery ?? searchParams.get('q') ?? ''
 
   const filtered = useMemo(() => {
     let list = [...hairstylists]
@@ -51,17 +46,17 @@ export default function HairstylistListPage() {
       <Header title="Coiffeuses" showBack />
 
       <div className="pt-3">
-        <SearchBar placeholder="Rechercher par nom, ville…" onSearch={setQuery} value={query} />
+        <SearchBar placeholder="Rechercher par nom, villeâ€¦" onSearch={setManualQuery} value={query} />
       </div>
 
-      <CategoryCarousel selected={selectedCategory} onSelect={setSelectedCategory} />
+      <CategoryCarousel selected={selectedCategory} onSelect={setManualCategory} />
 
       {/* Toolbar */}
       <div className="px-4 mb-4 flex items-center justify-between">
         <p style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Inter' }}>
           <span style={{ fontWeight: 700, color: 'var(--text-1)' }}>{filtered.length}</span> coiffeuse{filtered.length > 1 ? 's' : ''}
           {selectedCategory && (
-            <span style={{ color: 'var(--gold)', fontWeight: 600 }}> · {selectedCategory}</span>
+            <span style={{ color: 'var(--gold)', fontWeight: 600 }}> Â· {selectedCategory}</span>
           )}
         </p>
 
@@ -111,7 +106,7 @@ export default function HairstylistListPage() {
                   }}
                 >
                   {SORT_LABELS[key]}
-                  {sort === key && <span className="float-right">✓</span>}
+                  {sort === key && <span className="float-right">âœ“</span>}
                 </button>
               ))}
             </div>
@@ -124,7 +119,7 @@ export default function HairstylistListPage() {
         <div className="px-4 mb-3 flex gap-2 flex-wrap">
           {selectedCategory && (
             <span
-              onClick={() => setSelectedCategory('')}
+              onClick={() => setManualCategory('')}
               className="flex items-center gap-1 px-3 py-1 rounded-full cursor-pointer active-scale"
               style={{
                 background: 'var(--gold-light)',
@@ -135,12 +130,12 @@ export default function HairstylistListPage() {
                 fontFamily: 'Inter',
               }}
             >
-              {selectedCategory} ✕
+              {selectedCategory} âœ•
             </span>
           )}
           {query && (
             <span
-              onClick={() => setQuery('')}
+              onClick={() => setManualQuery('')}
               className="flex items-center gap-1 px-3 py-1 rounded-full cursor-pointer active-scale"
               style={{
                 background: 'var(--surface)',
@@ -151,7 +146,7 @@ export default function HairstylistListPage() {
                 fontFamily: 'Inter',
               }}
             >
-              "{query}" ✕
+              "{query}" âœ•
             </span>
           )}
         </div>
@@ -161,16 +156,16 @@ export default function HairstylistListPage() {
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center py-14 gap-3">
             <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'var(--surface)' }}>
-              <span style={{ fontSize: 28 }}>🔍</span>
+              <span style={{ fontSize: 28 }}>ðŸ”</span>
             </div>
             <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter' }}>
-              Aucun résultat
+              Aucun rÃ©sultat
             </p>
             <p style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Inter', textAlign: 'center' }}>
               Essaie une autre recherche ou retire les filtres
             </p>
             <button
-              onClick={() => { setQuery(''); setSelectedCategory('') }}
+              onClick={() => { setManualQuery(''); setManualCategory('') }}
               className="active-scale"
               style={{
                 fontSize: 13,
@@ -182,13 +177,18 @@ export default function HairstylistListPage() {
                 fontFamily: 'Inter',
               }}
             >
-              Réinitialiser les filtres
+              RÃ©initialiser les filtres
             </button>
           </div>
         ) : (
-          filtered.map(s => <HairstylistCard key={s.id} stylist={s} />)
+          <div className="grid grid-cols-3 gap-3">
+            {filtered.map(s => <HairstylistCard key={s.id} stylist={s} compact />)}
+          </div>
         )}
       </div>
     </div>
   )
 }
+
+
+

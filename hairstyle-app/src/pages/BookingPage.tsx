@@ -54,7 +54,7 @@ export default function BookingPage() {
             className="flex items-center gap-3 p-3.5 rounded-2xl mb-6"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
           >
-            <img src={service.image} alt={service.name} className="w-12 h-12 rounded-xl object-cover flex-shrink-0" />
+            <img src={service.image} alt={service.name} className="w-12 h-12 rounded-full object-cover flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
                 {service.name}

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import hairstylists from '../data/hairstylists.json'
 import services from '../data/services.json'
 import reviews from '../data/reviews.json'
+import { toggleId, useDemoFavorites } from '../lib/demoStore'
 
 const MONTH = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc']
 
@@ -10,7 +11,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <span>
       {[1,2,3,4,5].map(i => (
-        <span key={i} style={{ color: i <= rating ? '#F59E0B' : '#E5E7EB', fontSize: 13 }}>★</span>
+        <span key={i} style={{ color: i <= rating ? '#F59E0B' : '#E5E7EB', fontSize: 13 }}>&</span>
       ))}
     </span>
   )
@@ -20,12 +21,14 @@ export default function HairstylistProfilePage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState<'services' | 'galerie' | 'avis'>('services')
+  const [favorites, setFavorites] = useDemoFavorites()
 
   const stylist = hairstylists.find(s => s.id === id)
+  const isFavorite = id ? favorites.hairstylistIds.includes(id) : false
   if (!stylist) return (
     <div className="flex flex-col items-center justify-center h-screen gap-4">
       <p style={{ fontSize: 16, color: 'var(--text-2)', fontFamily: 'Inter' }}>Coiffeuse introuvable</p>
-      <button onClick={() => navigate(-1)} style={{ color: 'var(--gold)', fontFamily: 'Inter' }}>← Retour</button>
+      <button onClick={() => navigate(-1)} style={{ color: 'var(--gold)', fontFamily: 'Inter' }}>  Retour</button>
     </div>
   )
 
@@ -62,10 +65,23 @@ export default function HairstylistProfilePage() {
 
         {/* Favourite */}
         <button
+          type="button"
+          aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+          onClick={() => {
+            if (!id) return
+            setFavorites(current => ({
+              ...current,
+              hairstylistIds: toggleId(current.hairstylistIds, id),
+            }))
+          }}
           className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full active-scale"
-          style={{ background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.3)' }}
+          style={{
+            background: isFavorite ? 'rgba(201,168,76,0.92)' : 'rgba(255,255,255,0.2)',
+            backdropFilter: 'blur(8px)',
+            border: isFavorite ? '1px solid rgba(255,255,255,0.75)' : '1px solid rgba(255,255,255,0.3)',
+          }}
         >
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill={isFavorite ? 'white' : 'none'} stroke="white" strokeWidth="2">
             <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
           </svg>
         </button>
@@ -84,7 +100,7 @@ export default function HairstylistProfilePage() {
             </h1>
             <div className="flex items-center gap-2 mt-1">
               <div className="flex items-center gap-1">
-                <span style={{ color: '#F59E0B', fontSize: 13 }}>★</span>
+                <span style={{ color: '#F59E0B', fontSize: 13 }}>&</span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'Inter' }}>{avgRating}</span>
                 <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter' }}>
                   ({stylist.reviewCount} avis)
@@ -184,7 +200,7 @@ export default function HairstylistProfilePage() {
                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
               </svg>
               <span style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Inter' }}>
-                À domicile
+                ì domicile
               </span>
             </div>
           </div>
@@ -223,7 +239,7 @@ export default function HairstylistProfilePage() {
                 className="flex items-center gap-3 p-3.5 rounded-2xl"
                 style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
               >
-                <img src={service.image} alt={service.name} className="w-14 h-14 rounded-xl object-cover flex-shrink-0" />
+                <img src={service.image} alt={service.name} className="w-14 h-14 rounded-full object-cover flex-shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 2 }}>
                     {service.name}
@@ -233,7 +249,7 @@ export default function HairstylistProfilePage() {
                   </p>
                   <div className="flex items-center gap-2">
                     <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Inter' }}>
-                      {service.price}€
+                      {service.price}
                     </span>
                     <span style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter' }}>· {service.duration}</span>
                   </div>
@@ -271,7 +287,7 @@ export default function HairstylistProfilePage() {
           <div className="flex flex-col gap-3">
             {stylistReviews.length === 0 ? (
               <div className="text-center py-10">
-                <p style={{ fontSize: 28, marginBottom: 8 }}>💬</p>
+                <p style={{ fontSize: 28, marginBottom: 8 }}>x</p>
                 <p style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Inter' }}>
                   Aucun avis pour le moment
                 </p>
@@ -331,9 +347,9 @@ export default function HairstylistProfilePage() {
       >
         <div className="flex items-center gap-3">
           <div className="flex-1">
-            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter' }}>À partir de</p>
+            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter' }}>ì partir de</p>
             <p style={{ fontSize: 18, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Inter' }}>
-              {stylist.priceFrom}€
+              {stylist.priceFrom}
             </p>
           </div>
           <button
@@ -348,10 +364,12 @@ export default function HairstylistProfilePage() {
               boxShadow: '0 4px 16px rgba(201,168,76,0.35)',
             }}
           >
-            Réserver →
+            Réserver  
           </button>
         </div>
       </div>
     </div>
   )
 }
+
+

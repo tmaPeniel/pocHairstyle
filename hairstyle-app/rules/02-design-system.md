@@ -6,8 +6,8 @@
 
 ```css
 :root {
-  --bg:          #FFFFFF;   /* Fond général */
-  --surface:     #F8F7F5;   /* Cards, inputs */
+  --bg:          #F8F7F5;   /* Fond général */
+  --surface:     #FFFFFF;   /* Cards, inputs */
   --surface-2:   #F0EDE7;   /* Hover, disabled */
   --border:      #E8E4DC;   /* Bordures légères */
   --border-2:    #D5CFC3;   /* Bordures marquées */
@@ -75,7 +75,7 @@
 |---|---|
 | Card principale | `rounded-2xl` (16px) |
 | Bouton CTA | `rounded-2xl` (16px) |
-| Image thumbnail | `rounded-xl` (12px) |
+| Image thumbnail | `rounded-full` |
 | Avatar / photo ronde | `rounded-full` |
 | Badge / chip | `rounded-full` |
 | Input | `rounded-2xl` (16px) |

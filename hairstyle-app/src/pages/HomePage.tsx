@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
@@ -9,14 +9,11 @@ import HairstylistCard from '../components/HairstylistCard'
 import hairstylists from '../data/hairstylists.json'
 
 export default function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState('')
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const cat = searchParams.get('category')
-    if (cat) setSelectedCategory(cat)
-  }, [searchParams])
+  const categoryFromUrl = searchParams.get('category') ?? ''
+  const [manualCategory, setManualCategory] = useState<string | null>(null)
+  const selectedCategory = manualCategory ?? categoryFromUrl
 
   const filteredStylists = selectedCategory
     ? hairstylists.filter(s => s.categories.includes(selectedCategory))
@@ -31,53 +28,27 @@ export default function HomePage() {
       {/* 2. Search bar */}
       <div className="pt-3">
         <SearchBar />
-      </div>
-
-      
+      </div>    
 
       {/* 3. Offre du moment */}
       <PromoBanner />
 
-      {/* 4. 🔥 Styles populaires */}
-      <HairstyleCarousel onSelect={setSelectedCategory} />
+       {/* 4. CatÃ©gories */}
+      <CategoryCarousel selected={selectedCategory} onSelect={setManualCategory} />
 
-      {/* 5. 📍 Coiffeuses près de vous */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between px-4 mb-3">
-          <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', display: 'flex', alignItems: 'center', gap: 6 }}>
-            📍 Coiffeuses près de vous
-          </h2>
-          <button
-            onClick={() => navigate('/hairstylists')}
-            style={{ fontSize: 12, fontWeight: 600, color: 'var(--gold)', fontFamily: 'Inter' }}
-            className="active-scale"
-          >
-            See all →
-          </button>
-        </div>
-        <div className="flex gap-3 px-4 overflow-x-auto no-scrollbar pb-1">
-          {hairstylists.slice(0, 4).map(s => (
-            <HairstylistCard key={s.id} stylist={s} compact />
-          ))}
-        </div>
-      </div>
-
-      {/* 6. Catégories */}
-      <CategoryCarousel selected={selectedCategory} onSelect={setSelectedCategory} />
-
-      {/* 7. Liste principale — Coiffeuses disponibles */}
+      {/* 5. Liste principale â€” Coiffeuses disponibles */}
       <div className="px-4">
         <div className="flex items-center justify-between mb-4">
           <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
             {selectedCategory ? (
-              <>Résultats : <span style={{ color: 'var(--gold)' }}>{selectedCategory}</span></>
+              <>RÃ©sultats : <span style={{ color: 'var(--gold)' }}>{selectedCategory}</span></>
             ) : (
               'Coiffeuses disponibles'
             )}
           </h2>
           {selectedCategory && (
             <button
-              onClick={() => setSelectedCategory('')}
+              onClick={() => setManualCategory('')}
               className="active-scale"
               style={{
                 fontSize: 11,
@@ -90,7 +61,7 @@ export default function HomePage() {
                 fontFamily: 'Inter',
               }}
             >
-              Réinitialiser
+              RÃ©initialiser
             </button>
           )}
         </div>
@@ -101,13 +72,13 @@ export default function HomePage() {
               className="w-16 h-16 rounded-full flex items-center justify-center"
               style={{ background: 'var(--surface)' }}
             >
-              <span style={{ fontSize: 28 }}>😔</span>
+              <span style={{ fontSize: 28 }}>ðŸ˜”</span>
             </div>
             <p style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Inter' }}>
-              Aucune coiffeuse pour cette catégorie
+              Aucune coiffeuse pour cette catÃ©gorie
             </p>
             <button
-              onClick={() => setSelectedCategory('')}
+              onClick={() => setManualCategory('')}
               className="active-scale"
               style={{
                 fontSize: 13,
@@ -126,6 +97,36 @@ export default function HomePage() {
           filteredStylists.map(s => <HairstylistCard key={s.id} stylist={s} />)
         )}
       </div>
+
+      {/* 6. ðŸ”¥ Styles populaires */}
+      <HairstyleCarousel onSelect={setManualCategory} />
+
+      {/* 7. ðŸ“ Coiffeuses prÃ¨s de vous */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between px-4 mb-3">
+          <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', display: 'flex', alignItems: 'center', gap: 6 }}>
+            ðŸ“ Coiffeuses prÃ¨s de vous
+          </h2>
+          <button
+            onClick={() => navigate('/hairstylists')}
+            style={{ fontSize: 12, fontWeight: 600, color: 'var(--gold)', fontFamily: 'Inter' }}
+            className="active-scale"
+          >
+            See all â†’
+          </button>
+        </div>
+        <div className="flex gap-3 px-4 overflow-x-auto no-scrollbar pb-1">
+          {hairstylists.slice(0, 4).map(s => (
+            <div key={s.id} className="flex-shrink-0 w-32">
+              <HairstylistCard stylist={s} compact />
+            </div>
+          ))}
+        </div>
+      </div>
+
+     
     </div>
   )
 }
+
+

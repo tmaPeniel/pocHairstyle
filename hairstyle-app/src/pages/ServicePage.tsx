@@ -2,6 +2,7 @@ import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import services from '../data/services.json'
 import hairstylists from '../data/hairstylists.json'
 import reviews from '../data/reviews.json'
+import { toggleId, useDemoFavorites } from '../lib/demoStore'
 
 const MONTH = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc']
 
@@ -26,9 +27,11 @@ export default function ServicePage() {
   const { id } = useParams()
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
+  const [favorites, setFavorites] = useDemoFavorites()
   const stylistId = searchParams.get('stylistId')
 
   const service = services.find(s => s.id === id)
+  const isFavorite = id ? favorites.serviceIds.includes(id) : false
   const stylist = hairstylists.find(s => s.id === stylistId)
   const serviceReviews = reviews.filter(r => r.serviceId === id)
 
@@ -51,6 +54,27 @@ export default function ServicePage() {
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2">
             <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+          onClick={() => {
+            if (!id) return
+            setFavorites(current => ({
+              ...current,
+              serviceIds: toggleId(current.serviceIds, id),
+            }))
+          }}
+          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full active-scale"
+          style={{
+            background: isFavorite ? 'rgba(201,168,76,0.92)' : 'rgba(255,255,255,0.2)',
+            backdropFilter: 'blur(8px)',
+            border: isFavorite ? '1px solid rgba(255,255,255,0.75)' : '1px solid rgba(255,255,255,0.3)',
+          }}
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill={isFavorite ? 'white' : 'none'} stroke="white" strokeWidth="2">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
           </svg>
         </button>
         {/* Title on image */}
@@ -157,7 +181,7 @@ export default function ServicePage() {
               Coiffeuse sélectionnée
             </h2>
             <div className="flex items-center gap-3">
-              <img src={stylist.image} alt={stylist.name} className="w-12 h-12 rounded-xl object-cover" />
+              <img src={stylist.image} alt={stylist.name} className="w-12 h-12 rounded-full object-cover" />
               <div className="flex-1">
                 <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter' }}>
                   {stylist.name}

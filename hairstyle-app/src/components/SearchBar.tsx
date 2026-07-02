@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface SearchBarProps {
@@ -8,8 +8,10 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ placeholder = 'Quelle coiffure veux-tu ?', onSearch, value: externalValue }: SearchBarProps) {
-  const [value, setValue] = useState(externalValue ?? '')
+  const [internalValue, setInternalValue] = useState('')
   const navigate = useNavigate()
+  const isControlled = externalValue !== undefined
+  const value = isControlled ? externalValue : internalValue
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -17,9 +19,9 @@ export default function SearchBar({ placeholder = 'Quelle coiffure veux-tu ?', o
     else navigate(`/hairstylists?q=${encodeURIComponent(value)}`)
   }
 
-  const handleChange = (v: string) => {
-    setValue(v)
-    if (onSearch) onSearch(v)
+  const handleChange = (nextValue: string) => {
+    if (!isControlled) setInternalValue(nextValue)
+    if (onSearch) onSearch(nextValue)
   }
 
   return (
@@ -53,8 +55,9 @@ export default function SearchBar({ placeholder = 'Quelle coiffure veux-tu ?', o
         {value && (
           <button
             type="button"
+            aria-label="Effacer la recherche"
             onClick={() => handleChange('')}
-            className="absolute right-11 p-1"
+            className="absolute right-11 p-1 active-scale"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2">
               <line x1="18" y1="6" x2="6" y2="18" />
@@ -65,6 +68,7 @@ export default function SearchBar({ placeholder = 'Quelle coiffure veux-tu ?', o
 
         <button
           type="submit"
+          aria-label="Lancer la recherche"
           className="absolute right-2 w-8 h-8 flex items-center justify-center rounded-xl active-scale"
           style={{ background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)' }}
         >

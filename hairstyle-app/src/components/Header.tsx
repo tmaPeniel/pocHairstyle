@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+﻿import { useNavigate } from 'react-router-dom'
 
 interface HeaderProps {
   title?: string
@@ -16,13 +16,15 @@ export default function Header({ title, showBack = false, transparent = false, a
       style={{
         background: transparent
           ? 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, transparent 100%)'
-          : 'rgba(255,255,255,0.95)',
+          : 'var(--bg)',
         backdropFilter: 'blur(12px)',
         borderBottom: transparent ? 'none' : '1px solid var(--border)',
       }}
     >
       {showBack ? (
         <button
+          type="button"
+          aria-label="Retour"
           onClick={() => navigate(-1)}
           className="w-9 h-9 flex items-center justify-center rounded-full active-scale"
           style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
@@ -54,6 +56,9 @@ export default function Header({ title, showBack = false, transparent = false, a
       {action || (
         !showBack && (
           <button
+            type="button"
+            aria-label="Ouvrir les notifications"
+            onClick={() => navigate('/notifications')}
             className="w-9 h-9 flex items-center justify-center rounded-full relative active-scale"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
           >

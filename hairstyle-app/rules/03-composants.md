@@ -18,7 +18,7 @@ interface HeaderProps {
 - Sans `showBack` → affiche le logo "Hairly" + cloche
 - Avec `showBack` → affiche flèche retour `navigate(-1)`
 - Toujours `sticky top-0 z-40` avec `backdropFilter: 'blur(12px)'`
-- En mode normal : `borderBottom: '1px solid var(--border)'`
+- En mode normal : fond `var(--bg)` + `borderBottom: '1px solid var(--border)'`
 - Ne jamais masquer le Header sur les pages principales
 
 ---
@@ -31,9 +31,12 @@ interface HeaderProps {
 
 **Règles** :
 - Masqué sur `/confirmation` et `/success` (configuré dans `App.tsx`)
-- Fond `rgba(255,255,255,0.96)` + `backdropFilter: 'blur(16px)'`
-- Onglet actif : icône et texte en `var(--gold)`
-- Onglet inactif : `var(--text-3)`
+- Forme : **pilule flottante** (`borderRadius: 9999`), centrée, avec marges latérales 16px
+- Fond pilule : `rgba(255,255,255,0.96)` + `backdropFilter: 'blur(20px)'`
+- Ombre : `0 4px 24px rgba(0,0,0,0.13), 0 1px 6px rgba(0,0,0,0.08)`
+- Onglet actif : carré arrondi doré (`var(--gold)`, `borderRadius: 12`, `34×34px`) + icône blanche `#FFFFFF`
+- Onglet inactif : fond transparent + icône `#9A9A9A`
+- **Pas de labels texte** — icônes seules (`18×18px`)
 - Toujours `position: fixed bottom-0`
 
 ---

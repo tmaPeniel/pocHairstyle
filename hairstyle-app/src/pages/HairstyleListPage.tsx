@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import CategoryCarousel from '../components/CategoryCarousel'
 import hairstyles from '../data/hairstyles.json'
+import { toggleId, useDemoFavorites } from '../lib/demoStore'
 
 type SortKey = 'popular' | 'price_asc' | 'price_desc'
 
@@ -22,6 +23,7 @@ export default function HairstyleListPage() {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [sort, setSort] = useState<SortKey>('popular')
   const navigate = useNavigate()
+  const [favorites, setFavorites] = useDemoFavorites()
 
   const filtered = useMemo(() => {
     let list = [...hairstyles]
@@ -98,6 +100,27 @@ export default function HairstyleListPage() {
               {/* Image */}
               <div className="relative" style={{ height: 180 }}>
                 <img src={style.image} alt={style.name} className="w-full h-full object-cover" loading="lazy" />
+                <button
+                  type="button"
+                  aria-label={favorites.hairstyleIds.includes(style.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+                  onClick={event => {
+                    event.stopPropagation()
+                    setFavorites(current => ({
+                      ...current,
+                      hairstyleIds: toggleId(current.hairstyleIds, style.id),
+                    }))
+                  }}
+                  className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full active-scale"
+                  style={{
+                    background: favorites.hairstyleIds.includes(style.id) ? 'rgba(201,168,76,0.94)' : 'rgba(0,0,0,0.35)',
+                    backdropFilter: 'blur(8px)',
+                    border: '1px solid rgba(255,255,255,0.35)',
+                  }}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill={favorites.hairstyleIds.includes(style.id) ? 'white' : 'none'} stroke="white" strokeWidth="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                  </svg>
+                </button>
 
                 {style.badge && (
                   <div

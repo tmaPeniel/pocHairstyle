@@ -56,21 +56,21 @@ export default function BookingPage() {
           >
             <img src={service.image} alt={service.name} className="w-12 h-12 rounded-full object-cover flex-shrink-0" />
             <div className="flex-1 min-w-0">
-              <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+              <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
                 {service.name}
               </p>
-              <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter' }}>
+              <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>
                 avec {stylist.name} · {service.duration}
               </p>
             </div>
-            <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Inter' }}>
+            <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Manrope' }}>
               {service.price}€
             </span>
           </div>
         )}
 
         {/* Date selector */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 12 }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 12 }}>
           Choisir une date
         </h2>
         <div className="flex gap-2.5 overflow-x-auto no-scrollbar pb-0.5 mb-6">
@@ -83,18 +83,18 @@ export default function BookingPage() {
                 className="flex-shrink-0 flex flex-col items-center px-3.5 py-3 rounded-2xl active-scale transition-all duration-150"
                 style={{
                   minWidth: 56,
-                  background: isSelected ? 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)' : 'var(--surface)',
+                  background: isSelected ? 'var(--cta-gradient)' : 'var(--surface)',
                   border: isSelected ? '1.5px solid transparent' : '1.5px solid var(--border)',
-                  boxShadow: isSelected ? '0 4px 14px rgba(201,168,76,0.35)' : 'var(--shadow-sm)',
+                  boxShadow: isSelected ? '0 4px 14px rgba(196,69,115,0.28)' : 'var(--shadow-sm)',
                 }}
               >
-                <span style={{ fontSize: 10, fontWeight: 500, fontFamily: 'Inter', color: isSelected ? '#1A1A1A' : 'var(--text-3)', marginBottom: 2 }}>
+                <span style={{ fontSize: 10, fontWeight: 500, fontFamily: 'Manrope', color: isSelected ? '#1A1A1A' : 'var(--text-3)', marginBottom: 2 }}>
                   {DAY[d.getDay()]}
                 </span>
-                <span style={{ fontSize: 17, fontWeight: 800, fontFamily: 'Inter', color: isSelected ? '#1A1A1A' : 'var(--text-1)' }}>
+                <span style={{ fontSize: 17, fontWeight: 800, fontFamily: 'Manrope', color: isSelected ? '#1A1A1A' : 'var(--text-1)' }}>
                   {d.getDate()}
                 </span>
-                <span style={{ fontSize: 10, fontFamily: 'Inter', color: isSelected ? '#1A1A1A' : 'var(--text-3)' }}>
+                <span style={{ fontSize: 10, fontFamily: 'Manrope', color: isSelected ? '#1A1A1A' : 'var(--text-3)' }}>
                   {MONTH[d.getMonth()]}
                 </span>
               </button>
@@ -103,7 +103,7 @@ export default function BookingPage() {
         </div>
 
         {/* Time selector */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 12 }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 12 }}>
           Choisir un horaire
         </h2>
         <div className="grid grid-cols-3 gap-2 mb-6">
@@ -119,15 +119,15 @@ export default function BookingPage() {
                 style={{
                   fontSize: 13,
                   fontWeight: 600,
-                  fontFamily: 'Inter',
+                  fontFamily: 'Manrope',
                   background: isUnavailable ? 'var(--surface-2)'
-                    : isSelected ? 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)'
+                    : isSelected ? 'var(--cta-gradient)'
                     : 'var(--surface)',
                   color: isUnavailable ? 'var(--text-3)' : isSelected ? '#1A1A1A' : 'var(--text-1)',
                   border: isSelected ? '1.5px solid transparent' : '1.5px solid var(--border)',
                   opacity: isUnavailable ? 0.5 : 1,
                   textDecoration: isUnavailable ? 'line-through' : 'none',
-                  boxShadow: isSelected ? '0 2px 8px rgba(201,168,76,0.3)' : 'none',
+                  boxShadow: isSelected ? '0 2px 8px rgba(196,69,115,0.24)' : 'none',
                 }}
               >
                 {time}
@@ -135,7 +135,7 @@ export default function BookingPage() {
                   <span
                     style={{
                       position: 'absolute', bottom: 2, left: '50%', transform: 'translateX(-50%)',
-                      fontSize: 8, color: 'var(--text-3)', fontFamily: 'Inter',
+                      fontSize: 8, color: 'var(--text-3)', fontFamily: 'Manrope',
                     }}
                   >
                     Complet
@@ -147,7 +147,7 @@ export default function BookingPage() {
         </div>
 
         {/* Address */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 8 }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 8 }}>
           Adresse d'intervention <span style={{ color: '#DC2626' }}>*</span>
         </h2>
         <div className="relative mb-4">
@@ -167,7 +167,7 @@ export default function BookingPage() {
               background: 'var(--surface)',
               color: 'var(--text-1)',
               border: `1.5px solid ${address ? 'var(--gold)' : 'var(--border)'}`,
-              fontFamily: 'Inter',
+              fontFamily: 'Manrope',
               caretColor: 'var(--gold)',
               boxShadow: 'var(--shadow-sm)',
             }}
@@ -175,7 +175,7 @@ export default function BookingPage() {
         </div>
 
         {/* Notes */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 8 }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 8 }}>
           Informations complémentaires
           <span style={{ fontSize: 11, fontWeight: 400, color: 'var(--text-3)', marginLeft: 6 }}>(optionnel)</span>
         </h2>
@@ -189,7 +189,7 @@ export default function BookingPage() {
             background: 'var(--surface)',
             color: 'var(--text-1)',
             border: '1.5px solid var(--border)',
-            fontFamily: 'Inter',
+            fontFamily: 'Manrope',
             caretColor: 'var(--gold)',
             boxShadow: 'var(--shadow-sm)',
           }}
@@ -209,7 +209,7 @@ export default function BookingPage() {
         }}
       >
         {!canContinue && (
-          <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter', textAlign: 'center', marginBottom: 8 }}>
+          <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope', textAlign: 'center', marginBottom: 8 }}>
             {!selectedDate ? '📅 Sélectionne une date' : !selectedTime ? '🕙 Sélectionne un horaire' : '📍 Ajoute ton adresse'}
           </p>
         )}
@@ -218,14 +218,14 @@ export default function BookingPage() {
           className="w-full py-4 rounded-2xl active-scale flex items-center justify-center gap-2"
           style={{
             background: canContinue
-              ? 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)'
+              ? 'var(--cta-gradient)'
               : 'var(--surface)',
             color: canContinue ? '#1A1A1A' : 'var(--text-3)',
             fontSize: 15,
             fontWeight: 700,
-            fontFamily: 'Inter',
+            fontFamily: 'Manrope',
             border: canContinue ? 'none' : '1.5px solid var(--border)',
-            boxShadow: canContinue ? '0 4px 20px rgba(201,168,76,0.4)' : 'none',
+            boxShadow: canContinue ? '0 4px 20px rgba(196,69,115,0.32)' : 'none',
           }}
         >
           Continuer →

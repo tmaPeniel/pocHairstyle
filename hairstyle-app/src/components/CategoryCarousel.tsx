@@ -27,8 +27,8 @@ export default function CategoryCarousel({ selected, onSelect }: CategoryCarouse
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center"
                 style={isSelected ? {
-                  background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)',
-                  boxShadow: '0 2px 10px rgba(201,168,76,0.4)',
+                  background: 'var(--cta-gradient)',
+                  boxShadow: '0 2px 10px rgba(196,69,115,0.32)',
                 } : {
                   background: 'var(--surface)',
                   border: '1.5px solid var(--border)',
@@ -41,7 +41,7 @@ export default function CategoryCarousel({ selected, onSelect }: CategoryCarouse
                   fontSize: 11,
                   fontWeight: isSelected ? 600 : 400,
                   color: isSelected ? 'var(--gold)' : 'var(--text-2)',
-                  fontFamily: 'Inter',
+                  fontFamily: 'Manrope',
                 }}
               >
                 {cat.name}

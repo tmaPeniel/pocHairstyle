@@ -1,20 +1,25 @@
 @import "tailwindcss";
 
-/* ── Design tokens ───────────────────────────────────────── */
+/* Design tokens */
 :root {
-  --bg:          #F8F7F5;
+  --bg:          #FFF7F9;
   --surface:     #FFFFFF;
-  --surface-2:   #F0EDE7;
-  --border:      #E8E4DC;
-  --border-2:    #D5CFC3;
-  --text-1:      #1A1A1A;
-  --text-2:      #6B6B6B;
-  --text-3:      #9A9A9A;
-  --gold:        #C9A84C;
-  --gold-light:  rgba(201, 168, 76, 0.12);
-  --gold-border: rgba(201, 168, 76, 0.28);
-  --shadow-sm:   0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.04);
-  --shadow-md:   0 4px 20px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05);
+  --surface-2:   #FCEEF3;
+  --border:      #F2DDE5;
+  --border-2:    #E7C1CF;
+  --text-1:      #24151C;
+  --text-2:      #6F5360;
+  --text-3:      #A88391;
+  --primary:     #C44573;
+  --primary-light:  rgba(196, 69, 115, 0.12);
+  --primary-border: rgba(196, 69, 115, 0.24);
+  --cta-gradient: #C44573;
+  --accent-warm: #B7794D;
+  --gold:        var(--primary);
+  --gold-light:  var(--primary-light);
+  --gold-border: var(--primary-border);
+  --shadow-sm:   0 1px 3px rgba(82,32,54,0.07), 0 4px 12px rgba(82,32,54,0.05);
+  --shadow-md:   0 8px 28px rgba(82,32,54,0.12), 0 1px 4px rgba(82,32,54,0.06);
 }
 
 @layer base {
@@ -24,7 +29,7 @@
   }
 
   html {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   body {
@@ -56,13 +61,13 @@
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
 
-  /* Gold button gradient */
+  /* Primary button gradient */
   .gold-gradient {
-    background: linear-gradient(135deg, #C9A84C 0%, #F0D060 50%, #C9A84C 100%);
+    background: linear-gradient(135deg, #C44573 0%, #EF8EA8 50%, #B7794D 100%);
   }
   .gold-btn {
-    background: linear-gradient(135deg, #C9A84C 0%, #E8C040 100%);
-    color: #1A1A1A;
+    background: var(--cta-gradient);
+    color: #FFFFFF;
     font-weight: 700;
   }
   .gold-btn:active { opacity: 0.88; }
@@ -90,4 +95,33 @@
   .active-scale:active {
     transform: scale(0.96);
   }
+}
+
+@keyframes splash-progress-fill {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes splash-enter {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes splash-logo-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.splash-screen {
+  animation: splash-enter 0.28s ease-out both;
+}
+
+.splash-logo {
+  animation: splash-logo-float 1.65s ease-in-out infinite;
+}
+
+.splash-progress {
+  width: 100%;
+  transform-origin: left center;
+  animation: splash-progress-fill 1.75s ease-out forwards;
 }

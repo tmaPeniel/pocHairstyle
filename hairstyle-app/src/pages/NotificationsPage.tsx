@@ -1,4 +1,4 @@
-﻿import { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 
@@ -74,7 +74,7 @@ export default function NotificationsPage() {
                 color: 'var(--gold)',
                 fontSize: 11,
                 fontWeight: 700,
-                fontFamily: 'Inter',
+                fontFamily: 'Manrope',
               }}
             >
               Tout lu
@@ -88,13 +88,13 @@ export default function NotificationsPage() {
           className="p-4 rounded-2xl mb-4"
           style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
         >
-          <p style={{ fontSize: 12, color: 'var(--text-3)', fontFamily: 'Inter', marginBottom: 4 }}>
+          <p style={{ fontSize: 12, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 4 }}>
             Centre d'activité
           </p>
-          <h1 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Inter', lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope', lineHeight: 1.2 }}>
             {unreadCount > 0 ? `${unreadCount} notification${unreadCount > 1 ? 's' : ''} non lue${unreadCount > 1 ? 's' : ''}` : 'Tout est à jour'}
           </h1>
-          <p style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Inter', marginTop: 6 }}>
+          <p style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Manrope', marginTop: 6 }}>
             Réservations, offres et nouveautés importantes apparaissent ici.
           </p>
         </div>
@@ -104,18 +104,18 @@ export default function NotificationsPage() {
             <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'var(--surface)' }}>
               <span style={{ fontSize: 28 }}>🔔</span>
             </div>
-            <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+            <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
               Aucune notification
             </p>
             <button
               onClick={() => navigate('/profile/notification-settings')}
               className="px-4 py-3 rounded-xl active-scale"
               style={{
-                background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)',
+                background: 'var(--cta-gradient)',
                 color: '#1A1A1A',
                 fontSize: 13,
                 fontWeight: 700,
-                fontFamily: 'Inter',
+                fontFamily: 'Manrope',
               }}
             >
               Gérer mes alertes
@@ -131,8 +131,8 @@ export default function NotificationsPage() {
                 style={{
                   background: item.unread ? 'var(--surface)' : 'rgba(255,255,255,0.68)',
                   border: item.unread ? '1.5px solid var(--gold-border)' : '1px solid var(--border)',
-                  boxShadow: item.unread ? '0 4px 20px rgba(201,168,76,0.12)' : 'var(--shadow-sm)',
-                  fontFamily: 'Inter',
+                  boxShadow: item.unread ? '0 4px 20px rgba(196,69,115,0.12)' : 'var(--shadow-sm)',
+                  fontFamily: 'Manrope',
                 }}
               >
                 <div className="flex gap-3">
@@ -144,20 +144,20 @@ export default function NotificationsPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
-                      <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+                      <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
                         {item.title}
                       </p>
                       {item.unread && (
                         <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ background: 'var(--gold)' }} />
                       )}
                     </div>
-                    <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--text-2)', fontFamily: 'Inter', marginTop: 3 }}>
+                    <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--text-2)', fontFamily: 'Manrope', marginTop: 3 }}>
                       {item.body}
                     </p>
                     <div className="flex items-center justify-between mt-3">
-                      <span style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Inter' }}>{item.time}</span>
+                      <span style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{item.time}</span>
                       {item.actionLabel && (
-                        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Inter' }}>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Manrope' }}>
                           {item.actionLabel} →
                         </span>
                       )}
@@ -179,7 +179,7 @@ export default function NotificationsPage() {
               color: 'var(--text-2)',
               fontSize: 13,
               fontWeight: 600,
-              fontFamily: 'Inter',
+              fontFamily: 'Manrope',
             }}
           >
             Effacer les notifications lues

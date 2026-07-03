@@ -40,13 +40,13 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
             style={{ background: 'rgba(0,0,0,0.55)' }}
           >
             <span style={{ color: '#F59E0B', fontSize: 10 }}>★</span>
-            <span style={{ fontSize: 10, fontWeight: 600, color: '#fff', fontFamily: 'Inter' }}>{stylist.rating}</span>
+            <span style={{ fontSize: 10, fontWeight: 600, color: '#fff', fontFamily: 'Manrope' }}>{stylist.rating}</span>
           </div>
         </div>
-        <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter' }} className="truncate px-0.5">
+        <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }} className="truncate px-0.5">
           {stylist.name}
         </p>
-        <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--gold)', fontFamily: 'Inter' }} className="px-0.5">
+        <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--gold)', fontFamily: 'Manrope' }} className="px-0.5">
           dès {stylist.priceFrom}€
         </p>
       </div>
@@ -75,12 +75,12 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
       {/* Info */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between mb-0.5">
-          <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter' }} className="truncate">
+          <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }} className="truncate">
             {stylist.name}
           </p>
           <div className="flex items-center gap-0.5 ml-2 flex-shrink-0">
             <span style={{ color: '#F59E0B', fontSize: 12 }}>★</span>
-            <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
               {stylist.rating}
             </span>
           </div>
@@ -91,7 +91,7 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
             <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
-          <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter' }}>
+          <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>
             {stylist.city} · {stylist.reviewCount} avis
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
                 border: '1px solid var(--gold-border)',
                 borderRadius: 99,
                 padding: '1px 7px',
-                fontFamily: 'Inter',
+                fontFamily: 'Manrope',
               }}
             >
               {c}
@@ -118,7 +118,7 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
         </div>
 
         <div className="flex items-center justify-between">
-          <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Inter' }}>
+          <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Manrope' }}>
             Dès {stylist.priceFrom}€
           </span>
           <button
@@ -127,11 +127,11 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
               fontSize: 11,
               fontWeight: 600,
               color: '#1A1A1A',
-              background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)',
+              background: 'var(--cta-gradient)',
               borderRadius: 10,
               padding: '4px 12px',
-              fontFamily: 'Inter',
-              boxShadow: '0 1px 4px rgba(201,168,76,0.3)',
+              fontFamily: 'Manrope',
+              boxShadow: '0 1px 4px rgba(196,69,115,0.24)',
             }}
           >
             Voir profil

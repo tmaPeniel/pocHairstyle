@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface SearchBarProps {
@@ -44,7 +44,7 @@ export default function SearchBar({ placeholder = 'Quelle coiffure veux-tu ?', o
             background: 'var(--surface)',
             color: 'var(--text-1)',
             border: '1.5px solid var(--border)',
-            fontFamily: 'Inter',
+            fontFamily: 'Manrope',
             caretColor: 'var(--gold)',
             boxShadow: 'var(--shadow-sm)',
           }}
@@ -70,9 +70,9 @@ export default function SearchBar({ placeholder = 'Quelle coiffure veux-tu ?', o
           type="submit"
           aria-label="Lancer la recherche"
           className="absolute right-2 w-8 h-8 flex items-center justify-center rounded-xl active-scale"
-          style={{ background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)' }}
+          style={{ background: 'var(--cta-gradient)' }}
         >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="2.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </button>

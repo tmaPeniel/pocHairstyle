@@ -6,7 +6,7 @@ interface HairstyleCarouselProps {
 }
 
 const badgeStyle: Record<string, { bg: string; color: string }> = {
-  Populaire: { bg: 'rgba(201,168,76,0.18)', color: '#B8850A' },
+  Populaire: { bg: 'rgba(196,69,115,0.18)', color: '#B8850A' },
   Premium:   { bg: 'rgba(139,92,246,0.15)', color: '#7C3AED' },
   Tendance:  { bg: 'rgba(239,68,68,0.12)',  color: '#DC2626' },
 }
@@ -17,7 +17,7 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between px-4 mb-3">
-        <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', display: 'flex', alignItems: 'center', gap: 6 }}>
           🔥 Styles populaires
         </h2>
         <button
@@ -47,7 +47,7 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
                     color: badgeStyle[style.badge]?.color ?? '#fff',
                     fontSize: 10,
                     fontWeight: 700,
-                    fontFamily: 'Inter',
+                    fontFamily: 'Manrope',
                     border: `1px solid ${badgeStyle[style.badge]?.color ?? '#fff'}30`,
                   }}
                 >
@@ -56,16 +56,16 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
               )}
             </div>
             <div className="p-2.5">
-              <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 4 }} className="truncate">
+              <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 4 }} className="truncate">
                 {style.name}
               </p>
               <div className="flex items-center justify-between">
-                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Inter' }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Manrope' }}>
                   dès {style.startingPrice}€
                 </span>
                 <div className="flex items-center gap-0.5">
                   <span style={{ color: '#F59E0B', fontSize: 11 }}>★</span>
-                  <span style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Inter' }}>{style.rating}</span>
+                  <span style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Manrope' }}>{style.rating}</span>
                 </div>
               </div>
             </div>

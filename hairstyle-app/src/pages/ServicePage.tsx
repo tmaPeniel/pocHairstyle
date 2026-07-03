@@ -68,7 +68,7 @@ export default function ServicePage() {
           }}
           className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full active-scale"
           style={{
-            background: isFavorite ? 'rgba(201,168,76,0.92)' : 'rgba(255,255,255,0.2)',
+            background: isFavorite ? 'rgba(196,69,115,0.92)' : 'rgba(255,255,255,0.2)',
             backdropFilter: 'blur(8px)',
             border: isFavorite ? '1px solid rgba(255,255,255,0.75)' : '1px solid rgba(255,255,255,0.3)',
           }}
@@ -81,28 +81,28 @@ export default function ServicePage() {
         <div className="absolute bottom-5 left-5 right-5">
           <span
             style={{
-              fontSize: 10, fontWeight: 700, color: '#C9A84C',
-              background: 'rgba(201,168,76,0.18)', border: '1px solid rgba(201,168,76,0.4)',
-              borderRadius: 99, padding: '2px 10px', fontFamily: 'Inter', display: 'inline-block', marginBottom: 6,
+              fontSize: 10, fontWeight: 700, color: '#C44573',
+              background: 'rgba(196,69,115,0.18)', border: '1px solid rgba(196,69,115,0.32)',
+              borderRadius: 99, padding: '2px 10px', fontFamily: 'Manrope', display: 'inline-block', marginBottom: 6,
             }}
           >
             {service.category}
           </span>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: '#fff', fontFamily: 'Inter', lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: 22, fontWeight: 800, color: '#fff', fontFamily: 'Manrope', lineHeight: 1.2 }}>
             {service.name}
           </h1>
           <div className="flex items-center gap-2 mt-1.5">
             <span style={{ color: '#F59E0B', fontSize: 13 }}>★</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'Inter' }}>
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'Manrope' }}>
               {serviceReviews.length > 0
                 ? (serviceReviews.reduce((a, r) => a + r.rating, 0) / serviceReviews.length).toFixed(1)
                 : '4.9'}
             </span>
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter' }}>
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', fontFamily: 'Manrope' }}>
               ({serviceReviews.length} avis)
             </span>
             <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12 }}>·</span>
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontFamily: 'Inter' }}>{service.duration}</span>
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontFamily: 'Manrope' }}>{service.duration}</span>
           </div>
         </div>
       </div>
@@ -115,21 +115,21 @@ export default function ServicePage() {
             className="p-4 rounded-2xl flex flex-col items-center"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
           >
-            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter', marginBottom: 4 }}>Prix</p>
-            <p style={{ fontSize: 24, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Inter' }}>
+            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 4 }}>Prix</p>
+            <p style={{ fontSize: 24, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Manrope' }}>
               {service.price}€
             </p>
-            <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Inter' }}>tout inclus</p>
+            <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>tout inclus</p>
           </div>
           <div
             className="p-4 rounded-2xl flex flex-col items-center"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
           >
-            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Inter', marginBottom: 4 }}>Durée</p>
-            <p style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 4 }}>Durée</p>
+            <p style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
               {service.duration.split('-')[0]}h
             </p>
-            <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Inter' }}>environ</p>
+            <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>environ</p>
           </div>
         </div>
 
@@ -138,10 +138,10 @@ export default function ServicePage() {
           className="p-4 rounded-2xl mb-4"
           style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
         >
-          <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 8 }}>
+          <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 8 }}>
             Description
           </h2>
-          <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--text-2)', fontFamily: 'Inter' }}>
+          <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--text-2)', fontFamily: 'Manrope' }}>
             {service.description}
           </p>
         </div>
@@ -151,7 +151,7 @@ export default function ServicePage() {
           className="p-4 rounded-2xl mb-4"
           style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
         >
-          <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 10 }}>
+          <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
             Ce qui est inclus
           </h2>
           <div className="flex flex-col gap-2.5">
@@ -159,13 +159,13 @@ export default function ServicePage() {
               <div key={item} className="flex items-center gap-2.5">
                 <div
                   className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)' }}
+                  style={{ background: 'var(--cta-gradient)' }}
                 >
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="3">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <span style={{ fontSize: 13, color: 'var(--text-1)', fontFamily: 'Inter' }}>{item}</span>
+                <span style={{ fontSize: 13, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{item}</span>
               </div>
             ))}
           </div>
@@ -177,18 +177,18 @@ export default function ServicePage() {
             className="p-4 rounded-2xl mb-4"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
           >
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
               Coiffeuse sélectionnée
             </h2>
             <div className="flex items-center gap-3">
               <img src={stylist.image} alt={stylist.name} className="w-12 h-12 rounded-full object-cover" />
               <div className="flex-1">
-                <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+                <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
                   {stylist.name}
                 </p>
                 <div className="flex items-center gap-1 mt-0.5">
                   <span style={{ color: '#F59E0B', fontSize: 12 }}>★</span>
-                  <span style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Inter' }}>
+                  <span style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Manrope' }}>
                     {stylist.rating} · {stylist.city}
                   </span>
                 </div>
@@ -198,7 +198,7 @@ export default function ServicePage() {
                 style={{
                   fontSize: 12, fontWeight: 600, color: 'var(--gold)',
                   background: 'var(--gold-light)', border: '1px solid var(--gold-border)',
-                  borderRadius: 10, padding: '6px 12px', fontFamily: 'Inter',
+                  borderRadius: 10, padding: '6px 12px', fontFamily: 'Manrope',
                 }}
                 className="active-scale"
               >
@@ -211,7 +211,7 @@ export default function ServicePage() {
         {/* Avis */}
         {serviceReviews.length > 0 && (
           <div className="mb-4">
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
               Avis clients
             </h2>
             <div className="flex flex-col gap-3">
@@ -226,16 +226,16 @@ export default function ServicePage() {
                     <div className="flex items-center gap-2.5 mb-2">
                       <img src={r.avatar} alt={r.author} className="w-8 h-8 rounded-full object-cover" />
                       <div className="flex-1">
-                        <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter' }}>
+                        <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
                           {r.author}
                         </p>
-                        <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Inter' }}>
+                        <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>
                           {d.getDate()} {MONTH[d.getMonth()]} {d.getFullYear()}
                         </p>
                       </div>
                       <Stars rating={r.rating} />
                     </div>
-                    <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--text-2)', fontFamily: 'Inter' }}>
+                    <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--text-2)', fontFamily: 'Manrope' }}>
                       "{r.comment}"
                     </p>
                   </div>
@@ -248,7 +248,7 @@ export default function ServicePage() {
         {/* Services similaires */}
         {related.length > 0 && (
           <div className="mb-6">
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Inter', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
               Services similaires
             </h2>
             <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
@@ -263,10 +263,10 @@ export default function ServicePage() {
                     <img src={s.image} alt={s.name} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <div className="p-2">
-                    <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Inter' }} className="truncate">
+                    <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }} className="truncate">
                       {s.name}
                     </p>
-                    <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Inter' }}>{s.price}€</p>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Manrope' }}>{s.price}€</p>
                   </div>
                 </div>
               ))}
@@ -289,12 +289,12 @@ export default function ServicePage() {
           onClick={() => navigate(`/booking?serviceId=${id}&stylistId=${stylistId}`)}
           className="w-full py-4 rounded-2xl active-scale flex items-center justify-center gap-2"
           style={{
-            background: 'linear-gradient(135deg, #C9A84C 0%, #E8C040 100%)',
+            background: 'var(--cta-gradient)',
             color: '#1A1A1A',
             fontSize: 15,
             fontWeight: 700,
-            fontFamily: 'Inter',
-            boxShadow: '0 4px 20px rgba(201,168,76,0.4)',
+            fontFamily: 'Manrope',
+            boxShadow: '0 4px 20px rgba(196,69,115,0.32)',
           }}
         >
           Réserver ce service — {service.price}€ →

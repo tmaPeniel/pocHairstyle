@@ -1,13 +1,14 @@
-﻿import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 interface HeaderProps {
   title?: string
   showBack?: boolean
   transparent?: boolean
   action?: React.ReactNode
+  showBrand?: boolean
 }
 
-export default function Header({ title, showBack = false, transparent = false, action }: HeaderProps) {
+export default function Header({ title, showBack = false, transparent = false, action, showBrand = true }: HeaderProps) {
   const navigate = useNavigate()
 
   return (
@@ -33,15 +34,17 @@ export default function Header({ title, showBack = false, transparent = false, a
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
-      ) : (
+      ) : showBrand ? (
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-xl gold-gradient flex items-center justify-center shadow-sm">
-            <span style={{ color: '#1A1A1A', fontWeight: 800, fontSize: 13, fontFamily: 'Inter' }}>H</span>
+            <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: 13, fontFamily: 'Fraunces' }}>H</span>
           </div>
-          <span style={{ fontWeight: 700, fontSize: 15, color: 'var(--text-1)', letterSpacing: '-0.3px' }}>
+          <span style={{ fontWeight: 800, fontSize: 17, color: 'var(--text-1)', fontFamily: 'Fraunces' }}>
             Hairly
           </span>
         </div>
+      ) : (
+        <span aria-hidden="true" className="w-9 h-9" />
       )}
 
       {title && (

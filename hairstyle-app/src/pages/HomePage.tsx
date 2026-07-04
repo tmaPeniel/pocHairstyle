@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import hairstyles from '../data/hairstyles.json'
 import hairstylists from '../data/hairstylists.json'
 import { useDemoBookings, useDemoProfile } from '../lib/demoStore'
+import InitialsAvatar from '../components/InitialsAvatar'
 
 const QUICK_CATEGORIES = [
   { name: 'Tresses', icon: 'braids' },
@@ -278,7 +279,7 @@ export default function HomePage() {
               style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
             >
               <div className="flex items-center gap-3">
-                <img src={stylist.image} alt={stylist.name} className="w-14 h-14 rounded-2xl object-cover" loading="lazy" />
+                <InitialsAvatar name={stylist.name} className="w-14 h-14 rounded-2xl flex-shrink-0" textStyle={{ fontSize: 16 }} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <p className="truncate" style={{ fontSize: 14, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{stylist.name}</p>

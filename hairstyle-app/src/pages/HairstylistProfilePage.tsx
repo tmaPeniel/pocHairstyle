@@ -4,6 +4,7 @@ import hairstylists from '../data/hairstylists.json'
 import services from '../data/services.json'
 import reviews from '../data/reviews.json'
 import { toggleId, useDemoFavorites } from '../lib/demoStore'
+import InitialsAvatar from '../components/InitialsAvatar'
 
 const MONTH = ['jan', 'fév', 'mar', 'avr', 'mai', 'juin', 'juil', 'août', 'sep', 'oct', 'nov', 'déc']
 
@@ -83,7 +84,7 @@ export default function HairstylistProfilePage() {
 
         <div className="absolute left-4 right-4 bottom-5">
           <div className="flex items-end gap-3">
-            <img src={stylist.image} alt={stylist.name} className="w-18 h-18 rounded-3xl object-cover" style={{ width: 72, height: 72, border: '2px solid rgba(255,255,255,0.86)' }} />
+            <InitialsAvatar name={stylist.name} className="w-18 h-18 rounded-3xl" style={{ width: 72, height: 72, border: '2px solid rgba(255,255,255,0.86)' }} textStyle={{ fontSize: 22 }} />
             <div className="flex-1 min-w-0 pb-1">
               <div className="flex items-center gap-2 mb-1">
                 <span className="px-2 py-1 rounded-full" style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', fontSize: 10, fontWeight: 800, fontFamily: 'Manrope' }}>Disponible</span>

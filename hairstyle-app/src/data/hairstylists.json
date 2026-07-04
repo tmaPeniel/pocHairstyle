@@ -1,97 +1,97 @@
 [
   {
     "id": "1",
-    "name": "Amara Diallo",
-    "rating": 4.9,
-    "reviewCount": 214,
-    "city": "Paris 11e",
-    "priceFrom": 45,
+    "name": "Daniella Dokou",
+    "rating": 4.8,
+    "reviewCount": 42,
+    "city": "Rouen",
+    "priceFrom": 35,
     "image": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=face",
     "cover": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=400&fit=crop",
-    "bio": "Spécialiste des cheveux afro texturés depuis 10 ans. Je me déplace chez vous pour vous offrir une expérience unique et personnalisée.",
+    "bio": "Coiffeuse à domicile spécialisée dans les tresses africaines, les vanilles et les coiffures protectrices.",
     "gallery": [
       "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&h=300&fit=crop"
     ],
-    "services": ["1", "2", "3"],
-    "categories": ["Tresses", "Locks", "Vanilles"]
+    "services": ["1", "2", "8"],
+    "categories": ["Tresses africaines", "Vanilles", "Box braids"]
   },
   {
     "id": "2",
-    "name": "Sofia Benali",
-    "rating": 4.8,
-    "reviewCount": 178,
-    "city": "Paris 15e",
-    "priceFrom": 60,
+    "name": "Elischéba Amedemegna",
+    "rating": 4.9,
+    "reviewCount": 58,
+    "city": "Rouen",
+    "priceFrom": 40,
     "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
     "cover": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop",
-    "bio": "Experte en lissage brésilien et kératine. Résultats professionnels garantis directement chez vous.",
+    "bio": "Spécialisée dans l'entretien des locks, les départs de locks et les soins capillaires naturels.",
     "gallery": [
       "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop"
     ],
-    "services": ["4", "5"],
-    "categories": ["Lissage"]
+    "services": ["3", "9"],
+    "categories": ["Locks", "Retwist", "Départ locks"]
   },
   {
     "id": "3",
-    "name": "Nadia Traoré",
+    "name": "Clara Tohouri",
     "rating": 4.7,
-    "reviewCount": 95,
-    "city": "Paris 18e",
-    "priceFrom": 80,
+    "reviewCount": 36,
+    "city": "Rouen",
+    "priceFrom": 30,
     "image": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=face",
     "cover": "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&h=400&fit=crop",
-    "bio": "Pose et entretien de perruques haut de gamme. Spécialiste en transformations capillaires naturelles.",
+    "bio": "Coiffeuse à domicile proposant des prestations de pose de tissage, perruques et lissages.",
     "gallery": [
       "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=300&h=300&fit=crop"
     ],
-    "services": ["6", "7"],
-    "categories": ["Perruques"]
+    "services": ["6", "7", "4", "5"],
+    "categories": ["Tissage", "Perruques", "Lissage"]
   },
   {
     "id": "4",
-    "name": "Fatou Sow",
-    "rating": 5.0,
-    "reviewCount": 312,
-    "city": "Paris 10e",
-    "priceFrom": 55,
+    "name": "Omayira Boupadi",
+    "rating": 4.6,
+    "reviewCount": 29,
+    "city": "Rouen",
+    "priceFrom": 32,
     "image": "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?w=400&h=400&fit=crop&crop=face",
     "cover": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=400&fit=crop",
-    "bio": "Maîtresse des tresses africaines et vanilles. 12 ans d'expérience, résultats impeccables.",
+    "bio": "Spécialiste des braids, knotless braids et nattes collées pour un rendu propre et durable.",
     "gallery": [
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=300&h=300&fit=crop"
     ],
-    "services": ["1", "2", "8"],
-    "categories": ["Tresses", "Vanilles"]
+    "services": ["2", "8", "1"],
+    "categories": ["Braids", "Knotless braids", "Nattes collées"]
   },
   {
     "id": "5",
-    "name": "Céleste Martin",
-    "rating": 4.6,
-    "reviewCount": 67,
-    "city": "Paris 9e",
-    "priceFrom": 70,
+    "name": "Vicky-Lyvia Mebale",
+    "rating": 4.8,
+    "reviewCount": 47,
+    "city": "Rouen",
+    "priceFrom": 38,
     "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
     "cover": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=400&fit=crop",
-    "bio": "Coiffeuse certifiée spécialisée en locks et coiffures naturelles. Passion pour la beauté authentique.",
+    "bio": "Coiffeuse polyvalente spécialisée dans les tresses, les Fulani braids et les coiffures pour événements.",
     "gallery": [
       "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop"
     ],
-    "services": ["3", "9"],
-    "categories": ["Locks"]
+    "services": ["1", "2", "8"],
+    "categories": ["Tresses", "Fulani braids", "Coiffure événementielle"]
   }
 ]

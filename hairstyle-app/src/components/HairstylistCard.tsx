@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import InitialsAvatar from './InitialsAvatar'
 
 interface Hairstylist {
   id: string
@@ -6,7 +7,6 @@ interface Hairstylist {
   rating: number
   city: string
   priceFrom: number
-  image: string
   reviewCount: number
   categories: string[]
 }
@@ -29,7 +29,7 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
           className="relative w-full rounded-2xl overflow-hidden mb-2"
           style={{ aspectRatio: '1 / 1', border: '1.5px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
         >
-          <img src={stylist.image} alt={stylist.name} className="w-full h-full object-cover" loading="lazy" />
+          <InitialsAvatar name={stylist.name} className="w-full h-full" textStyle={{ fontSize: 28 }} />
           {/* Online dot */}
           <div
             className="absolute top-2 right-2 w-2.5 h-2.5 rounded-full"
@@ -61,11 +61,7 @@ export default function HairstylistCard({ stylist, compact = false }: Hairstylis
     >
       {/* Avatar */}
       <div className="relative flex-shrink-0">
-        <img
-          src={stylist.image}
-          alt={stylist.name}
-          className="w-16 h-16 rounded-full object-cover"
-        />
+        <InitialsAvatar name={stylist.name} className="w-16 h-16 rounded-full" textStyle={{ fontSize: 18 }} />
         <div
           className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full"
           style={{ background: '#22C55E', border: '2px solid white' }}

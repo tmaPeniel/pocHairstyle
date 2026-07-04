@@ -2,6 +2,7 @@ import { type FormEvent, useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import hairstylists from '../data/hairstylists.json'
 import { toggleId, useDemoFavorites } from '../lib/demoStore'
+import InitialsAvatar from '../components/InitialsAvatar'
 
 type SortKey = 'rating' | 'price_asc' | 'price_desc'
 
@@ -111,7 +112,7 @@ export default function HairstylistListPage() {
               const liked = favorites.hairstylistIds.includes(stylist.id)
               return <div key={stylist.id} role="button" tabIndex={0} onClick={() => navigate(`/hairstylist/${stylist.id}`)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); navigate(`/hairstylist/${stylist.id}`) } }} className="w-full p-3 rounded-3xl active-scale text-left cursor-pointer" style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: '0 6px 18px rgba(82,32,54,0.05)' }}>
                 <div className="flex gap-3">
-                  <div className="relative flex-shrink-0"><img src={stylist.image} alt={stylist.name} className="w-20 h-20 rounded-3xl object-cover" loading="lazy" /><span className="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-full" style={{ background: '#fff', color: '#B7794D', fontSize: 10, fontWeight: 800, fontFamily: 'Manrope', boxShadow: '0 2px 8px rgba(82,32,54,0.10)' }}>{'\u2605'} {stylist.rating}</span></div>
+                  <div className="relative flex-shrink-0"><InitialsAvatar name={stylist.name} className="w-20 h-20 rounded-3xl" textStyle={{ fontSize: 22 }} /><span className="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-full" style={{ background: '#fff', color: '#B7794D', fontSize: 10, fontWeight: 800, fontFamily: 'Manrope', boxShadow: '0 2px 8px rgba(82,32,54,0.10)' }}>{'\u2605'} {stylist.rating}</span></div>
                   <div className="flex-1 min-w-0 py-0.5">
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <div className="min-w-0"><p className="truncate" style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{stylist.name}</p><p className="truncate" style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{stylist.city} {'\u00b7'} {stylist.reviewCount} avis</p></div>

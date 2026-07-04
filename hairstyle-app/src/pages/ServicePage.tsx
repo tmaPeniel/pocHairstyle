@@ -3,6 +3,7 @@ import services from '../data/services.json'
 import hairstylists from '../data/hairstylists.json'
 import reviews from '../data/reviews.json'
 import { toggleId, useDemoFavorites } from '../lib/demoStore'
+import InitialsAvatar from '../components/InitialsAvatar'
 
 const MONTH = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc']
 
@@ -181,7 +182,7 @@ export default function ServicePage() {
               Coiffeuse sélectionnée
             </h2>
             <div className="flex items-center gap-3">
-              <img src={stylist.image} alt={stylist.name} className="w-12 h-12 rounded-full object-cover" />
+              <InitialsAvatar name={stylist.name} className="w-12 h-12 rounded-full" textStyle={{ fontSize: 14 }} />
               <div className="flex-1">
                 <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
                   {stylist.name}
@@ -260,7 +261,7 @@ export default function ServicePage() {
                   style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
                 >
                   <div style={{ height: 80 }}>
-                    <img src={s.image} alt={s.name} className="w-full h-full object-cover" loading="lazy" />
+                    <InitialsAvatar name={s.name} className="w-full h-full" textStyle={{ fontSize: 24 }} />
                   </div>
                   <div className="p-2">
                     <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }} className="truncate">

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import hairstyles from '../data/hairstyles.json'
+import { hairstyles } from '../data/catalog'
 
 interface HairstyleCarouselProps {
   onSelect?: (category: string) => void
@@ -17,7 +17,7 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between px-4 mb-3">
-        <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Poppins', display: 'flex', alignItems: 'center', gap: 6 }}>
           🔥 Styles populaires
         </h2>
         <button
@@ -47,7 +47,7 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
                     color: badgeStyle[style.badge]?.color ?? '#fff',
                     fontSize: 10,
                     fontWeight: 700,
-                    fontFamily: 'Manrope',
+                    fontFamily: 'Poppins',
                     border: `1px solid ${badgeStyle[style.badge]?.color ?? '#fff'}30`,
                   }}
                 >
@@ -56,16 +56,16 @@ export default function HairstyleCarousel({ onSelect }: HairstyleCarouselProps) 
               )}
             </div>
             <div className="p-2.5">
-              <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 4 }} className="truncate">
+              <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Poppins', marginBottom: 4 }} className="truncate">
                 {style.name}
               </p>
               <div className="flex items-center justify-between">
-                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Manrope' }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Poppins' }}>
                   dès {style.startingPrice}€
                 </span>
                 <div className="flex items-center gap-0.5">
                   <span style={{ color: '#F59E0B', fontSize: 11 }}>★</span>
-                  <span style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Manrope' }}>{style.rating}</span>
+                  <span style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Poppins' }}>{style.rating}</span>
                 </div>
               </div>
             </div>

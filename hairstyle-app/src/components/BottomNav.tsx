@@ -13,7 +13,7 @@ const tabs = [
   },
   {
     path: '/hairstyles',
-    label: 'Styles',
+    label: 'Explorer',
     icon: (active: boolean) => (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={active ? '#FFFFFF' : '#9A9A9A'} strokeWidth="1.8">
         <circle cx="12" cy="12" r="3" />
@@ -23,24 +23,20 @@ const tabs = [
   },
   {
     path: '/hairstylists',
-    label: 'Coiffeuses',
+    label: 'Réserver',
     icon: (active: boolean) => (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={active ? '#FFFFFF' : '#9A9A9A'} strokeWidth="1.8">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={active ? '#FFFFFF' : '#FFFFFF'} strokeWidth="2">
+        <path d="M12 5v14M5 12h14" />
       </svg>
     ),
   },
   {
     path: '/reservations',
-    label: 'Résa',
+    label: 'RDV',
     icon: (active: boolean) => (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={active ? '#FFFFFF' : '#9A9A9A'} strokeWidth="1.8">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-        <line x1="16" y1="2" x2="16" y2="6" />
-        <line x1="8" y1="2" x2="8" y2="6" />
-        <line x1="3" y1="10" x2="21" y2="10" />
+        <rect x="3" y="4" width="18" height="18" rx="2.5" />
+        <path d="M16 2v4M8 2v4M3 10h18M8 15h3M13 15h3" />
       </svg>
     ),
   },
@@ -60,8 +56,15 @@ export default function BottomNav() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const isActive = (path: string) =>
-    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
+  const isActive = (path: string) => {
+    if (path === '/') return location.pathname === '/'
+    if (path === '/reservations') return location.pathname === '/reservations'
+    if (path === '/profile') return location.pathname === '/profile' || (
+      location.pathname.startsWith('/profile/') &&
+      location.pathname !== '/profile/favorites'
+    )
+    return location.pathname.startsWith(path)
+  }
 
   return (
     <nav
@@ -78,14 +81,14 @@ export default function BottomNav() {
           background: 'rgba(255,255,255,0.96)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderRadius: 9999,
+          borderRadius: 22,
           paddingTop: 6,
           paddingBottom: 6,
           paddingLeft: 10,
           paddingRight: 10,
           boxShadow: '0 4px 24px rgba(0,0,0,0.13), 0 1px 6px rgba(0,0,0,0.08)',
           border: '1px solid rgba(255,255,255,0.7)',
-          width: 'fit-content',
+          width: '100%',
         }}
       >
         {tabs.map(tab => {
@@ -94,29 +97,32 @@ export default function BottomNav() {
             <button
               key={tab.path}
               onClick={() => navigate(tab.path)}
-              className="flex items-center justify-center active-scale"
+              className="flex flex-col items-center justify-center active-scale"
               style={{
                 padding: '2px',
                 background: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                minWidth: 44,
+                minWidth: 52,
               }}
             >
               <div
                 style={{
-                  width: 34,
-                  height: 34,
-                  borderRadius: 10,
-                  background: active ? 'var(--gold)' : 'transparent',
+                  width: tab.path === '/hairstylists' ? 40 : 30,
+                  height: tab.path === '/hairstylists' ? 40 : 30,
+                  borderRadius: tab.path === '/hairstylists' ? 999 : 10,
+                  background: active || tab.path === '/hairstylists' ? (tab.path === '/hairstylists' ? '#D4AF37' : 'var(--primary)') : 'transparent',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   transition: 'background 0.18s ease',
                 }}
               >
-                {tab.icon(active)}
+                {tab.icon(active || tab.path === '/hairstylists')}
               </div>
+              <span style={{ fontSize: 8.5, fontWeight: active ? 700 : 500, color: active ? 'var(--primary)' : 'var(--text-3)', fontFamily: 'Poppins', marginTop: 1 }}>
+                {tab.label}
+              </span>
             </button>
           )
         })}

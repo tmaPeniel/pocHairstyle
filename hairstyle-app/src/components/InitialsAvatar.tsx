@@ -36,7 +36,7 @@ export default function InitialsAvatar({ name, className = '', style, textStyle 
     >
       <span
         style={{
-          fontFamily: 'Manrope',
+          fontFamily: 'Poppins',
           fontWeight: 900,
           letterSpacing: '0.02em',
           ...textStyle,

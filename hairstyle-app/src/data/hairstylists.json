@@ -5,9 +5,9 @@
     "rating": 4.8,
     "reviewCount": 42,
     "city": "Rouen",
-    "priceFrom": 35,
-    "image": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=face",
-    "cover": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=400&fit=crop",
+    "priceFrom": 15000,
+    "image": "/images/hairstyles/box-braids.png",
+    "cover": "/images/hairstyles/box-braids.png",
     "bio": "Coiffeuse à domicile spécialisée dans les tresses africaines, les vanilles et les coiffures protectrices.",
     "gallery": [
       "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=300&h=300&fit=crop",
@@ -15,8 +15,8 @@
       "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&h=300&fit=crop"
     ],
-    "services": ["1", "2", "8"],
-    "categories": ["Tresses africaines", "Vanilles", "Box braids"]
+    "services": ["1", "2", "6", "15", "17", "20"],
+    "categories": ["Tresses", "Vanilles & Twists"]
   },
   {
     "id": "2",
@@ -24,9 +24,9 @@
     "rating": 4.9,
     "reviewCount": 58,
     "city": "Rouen",
-    "priceFrom": 40,
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
-    "cover": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop",
+    "priceFrom": 12000,
+    "image": "/images/hairstyles/dreadlocks.png",
+    "cover": "/images/hairstyles/dreadlocks.png",
     "bio": "Spécialisée dans l'entretien des locks, les départs de locks et les soins capillaires naturels.",
     "gallery": [
       "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=300&h=300&fit=crop",
@@ -34,8 +34,8 @@
       "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop"
     ],
-    "services": ["3", "9"],
-    "categories": ["Locks", "Retwist", "Départ locks"]
+    "services": ["21", "22", "23", "24", "44", "45", "46", "47"],
+    "categories": ["Locks", "Soins capillaires"]
   },
   {
     "id": "3",
@@ -43,9 +43,9 @@
     "rating": 4.7,
     "reviewCount": 36,
     "city": "Rouen",
-    "priceFrom": 30,
-    "image": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=face",
-    "cover": "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&h=400&fit=crop",
+    "priceFrom": 15000,
+    "image": "/images/hairstyles/perruque-frontale.png",
+    "cover": "/images/hairstyles/perruque-frontale.png",
     "bio": "Coiffeuse à domicile proposant des prestations de pose de tissage, perruques et lissages.",
     "gallery": [
       "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=300&h=300&fit=crop",
@@ -53,8 +53,8 @@
       "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=300&h=300&fit=crop"
     ],
-    "services": ["6", "7", "4", "5"],
-    "categories": ["Tissage", "Perruques", "Lissage"]
+    "services": ["29", "30", "31", "32", "37", "38", "39", "40"],
+    "categories": ["Perruques & Lace", "Tissages"]
   },
   {
     "id": "4",
@@ -62,9 +62,9 @@
     "rating": 4.6,
     "reviewCount": 29,
     "city": "Rouen",
-    "priceFrom": 32,
-    "image": "https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?w=400&h=400&fit=crop&crop=face",
-    "cover": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=400&fit=crop",
+    "priceFrom": 18000,
+    "image": "/images/hairstyles/knotless-braids.png",
+    "cover": "/images/hairstyles/knotless-braids.png",
     "bio": "Spécialiste des braids, knotless braids et nattes collées pour un rendu propre et durable.",
     "gallery": [
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop",
@@ -72,8 +72,8 @@
       "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=300&h=300&fit=crop"
     ],
-    "services": ["2", "8", "1"],
-    "categories": ["Braids", "Knotless braids", "Nattes collées"]
+    "services": ["2", "3", "4", "12", "13", "18"],
+    "categories": ["Tresses", "Vanilles & Twists"]
   },
   {
     "id": "5",
@@ -81,9 +81,9 @@
     "rating": 4.8,
     "reviewCount": 47,
     "city": "Rouen",
-    "priceFrom": 38,
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
-    "cover": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=400&fit=crop",
+    "priceFrom": 20000,
+    "image": "/images/hairstyles/fulani-braids.png",
+    "cover": "/images/hairstyles/fulani-braids.png",
     "bio": "Coiffeuse polyvalente spécialisée dans les tresses, les Fulani braids et les coiffures pour événements.",
     "gallery": [
       "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=300&h=300&fit=crop",
@@ -91,7 +91,7 @@
       "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&h=300&fit=crop",
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=300&fit=crop"
     ],
-    "services": ["1", "2", "8"],
-    "categories": ["Tresses", "Fulani braids", "Coiffure événementielle"]
+    "services": ["1", "5", "6", "7", "41", "42", "43"],
+    "categories": ["Tresses", "Tissages"]
   }
 ]

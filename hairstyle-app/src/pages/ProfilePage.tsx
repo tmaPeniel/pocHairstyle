@@ -141,7 +141,7 @@ export default function ProfilePage() {
 
       <div className="px-4 pt-4">
         {feedback && (
-          <div className="mb-3 p-3 rounded-xl" style={{ background: 'var(--gold-light)', border: '1px solid var(--gold-border)', color: 'var(--gold)', fontSize: 12, fontWeight: 700, fontFamily: 'Manrope' }}>
+          <div className="mb-3 p-3 rounded-xl" style={{ background: 'var(--gold-light)', border: '1px solid var(--gold-border)', color: 'var(--gold)', fontSize: 12, fontWeight: 700, fontFamily: 'Poppins' }}>
             {feedback}
           </div>
         )}
@@ -155,17 +155,17 @@ export default function ProfilePage() {
               </button>
             </div>
             <div className="flex-1 min-w-0">
-              {editMode ? <input value={name} onChange={event => setName(event.target.value)} className="w-full text-sm font-bold outline-none rounded-lg px-2 py-1 mb-1" style={{ background: '#fff', border: '1.5px solid var(--gold)', color: 'var(--text-1)', fontFamily: 'Manrope' }} /> : <p className="truncate" style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{name}</p>}
-              {editMode ? <input value={email} onChange={event => setEmail(event.target.value)} className="w-full text-xs outline-none rounded-lg px-2 py-1 mb-1" style={{ background: '#fff', border: '1px solid var(--border)', color: 'var(--text-2)', fontFamily: 'Manrope' }} /> : <p className="truncate" style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{email}</p>}
-              {editMode ? <input value={phone} onChange={event => setPhone(event.target.value)} className="w-full text-xs outline-none rounded-lg px-2 py-1" style={{ background: '#fff', border: '1px solid var(--border)', color: 'var(--text-2)', fontFamily: 'Manrope' }} /> : <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{phone}</p>}
+              {editMode ? <input value={name} onChange={event => setName(event.target.value)} className="w-full text-sm font-bold outline-none rounded-lg px-2 py-1 mb-1" style={{ background: '#fff', border: '1.5px solid var(--gold)', color: 'var(--text-1)', fontFamily: 'Poppins' }} /> : <p className="truncate" style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Poppins' }}>{name}</p>}
+              {editMode ? <input value={email} onChange={event => setEmail(event.target.value)} className="w-full text-xs outline-none rounded-lg px-2 py-1 mb-1" style={{ background: '#fff', border: '1px solid var(--border)', color: 'var(--text-2)', fontFamily: 'Poppins' }} /> : <p className="truncate" style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Poppins' }}>{email}</p>}
+              {editMode ? <input value={phone} onChange={event => setPhone(event.target.value)} className="w-full text-xs outline-none rounded-lg px-2 py-1" style={{ background: '#fff', border: '1px solid var(--border)', color: 'var(--text-2)', fontFamily: 'Poppins' }} /> : <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Poppins' }}>{phone}</p>}
             </div>
           </div>
-          <button type="button" onClick={handleSave} className="w-full py-2.5 rounded-xl active-scale" style={{ fontSize: 13, fontWeight: 600, fontFamily: 'Manrope', background: editMode ? 'var(--cta-gradient)' : 'var(--surface-2)', color: editMode ? '#FFFFFF' : 'var(--text-2)', border: editMode ? 'none' : '1px solid var(--border)' }}>{editMode ? 'Enregistrer les modifications' : 'Modifier le profil'}</button>
+          <button type="button" onClick={handleSave} className="w-full py-2.5 rounded-xl active-scale" style={{ fontSize: 13, fontWeight: 600, fontFamily: 'Poppins', background: editMode ? 'var(--cta-gradient)' : 'var(--surface-2)', color: editMode ? '#FFFFFF' : 'var(--text-2)', border: editMode ? 'none' : '1px solid var(--border)' }}>{editMode ? 'Enregistrer les modifications' : 'Modifier le profil'}</button>
           <div className="grid grid-cols-3 gap-px mt-4 pt-4 rounded-xl overflow-hidden" style={{ borderTop: '1px solid var(--border)', background: 'var(--border)' }}>
             {[{ label: 'Réservations', value: bookingList.length }, { label: 'Note moy.', value: profile.avgRating }, { label: 'Avis laissés', value: profile.reviewsCount }].map(stat => (
               <div key={stat.label} className="flex flex-col items-center py-3" style={{ background: 'var(--surface)' }}>
-                <span style={{ fontSize: 18, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Manrope' }}>{stat.value}</span>
-                <span style={{ fontSize: 9, color: 'var(--text-3)', fontFamily: 'Manrope', textAlign: 'center', marginTop: 1 }}>{stat.label}</span>
+                <span style={{ fontSize: 18, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Poppins' }}>{stat.value}</span>
+                <span style={{ fontSize: 9, color: 'var(--text-3)', fontFamily: 'Poppins', textAlign: 'center', marginTop: 1 }}>{stat.label}</span>
               </div>
             ))}
           </div>
@@ -175,44 +175,44 @@ export default function ProfilePage() {
           <div className="absolute right-0 top-1 opacity-95 pointer-events-none"><LoyaltyIllustration /></div>
           <div className="relative z-10 pr-24">
             <div className="flex items-center gap-2 mb-3">
-              <span style={{ fontSize: 12, fontWeight: 700, color: tier.color, background: tier.bg, border: '1px solid ' + tier.border, borderRadius: 99, padding: '1px 10px', fontFamily: 'Manrope' }}>{profile.tier}</span>
-              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.58)', fontFamily: 'Manrope' }}>Membre depuis {profile.joinDate}</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: tier.color, background: tier.bg, border: '1px solid ' + tier.border, borderRadius: 99, padding: '1px 10px', fontFamily: 'Poppins' }}>{profile.tier}</span>
+              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.58)', fontFamily: 'Poppins' }}>Membre depuis {profile.joinDate}</span>
             </div>
-            <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', fontFamily: 'Manrope', marginBottom: 1 }}>Programme fidélité</p>
-            <p style={{ fontSize: 28, fontWeight: 800, color: '#FFE1EA', fontFamily: 'Manrope', lineHeight: 1 }}>{profile.loyaltyPoints}</p>
-            <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontFamily: 'Manrope', marginTop: 2 }}>points</p>
+            <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', fontFamily: 'Poppins', marginBottom: 1 }}>Programme fidélité</p>
+            <p style={{ fontSize: 28, fontWeight: 800, color: '#FFE1EA', fontFamily: 'Poppins', lineHeight: 1 }}>{profile.loyaltyPoints}</p>
+            <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontFamily: 'Poppins', marginTop: 2 }}>points</p>
           </div>
           <div className="relative z-10 mt-4">
             <div className="flex justify-between mb-1">
-              <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontFamily: 'Manrope' }}>{profile.loyaltyPoints} pts</span>
-              <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontFamily: 'Manrope' }}>{nextTierPts} pts vers Platinum</span>
+              <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontFamily: 'Poppins' }}>{profile.loyaltyPoints} pts</span>
+              <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', fontFamily: 'Poppins' }}>{nextTierPts} pts vers Platinum</span>
             </div>
             <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.1)' }}>
               <div className="h-full rounded-full" style={{ width: progress + '%', background: 'linear-gradient(90deg, #C44573 0%, #FFE1EA 100%)' }} />
             </div>
-            <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.35)', fontFamily: 'Manrope', marginTop: 4 }}>Encore {Math.max(nextTierPts - profile.loyaltyPoints, 0)} pts pour atteindre le rang Platinum</p>
+            <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.35)', fontFamily: 'Poppins', marginTop: 4 }}>Encore {Math.max(nextTierPts - profile.loyaltyPoints, 0)} pts pour atteindre le rang Platinum</p>
           </div>
         </button>
 
         <div className="flex items-center gap-3 p-4 rounded-2xl mb-5" style={{ background: 'var(--gold-light)', border: '1px solid var(--gold-border)' }}>
           <GiftIllustration />
           <div className="flex-1 min-w-0">
-            <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Manrope' }}>Parrainage actif</p>
-            <p className="truncate" style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Manrope' }}>Code : <span style={{ fontWeight: 700, fontFamily: 'monospace' }}>{profile.referralCode}</span> - 10 euros par ami invite</p>
+            <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Poppins' }}>Parrainage actif</p>
+            <p className="truncate" style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: 'Poppins' }}>Code : <span style={{ fontWeight: 700, fontFamily: 'monospace' }}>{profile.referralCode}</span> - 10 euros par ami invite</p>
           </div>
-          <button type="button" onClick={handleShare} className="active-scale" style={{ fontSize: 12, fontWeight: 600, color: '#FFFFFF', background: 'var(--cta-gradient)', borderRadius: 10, padding: '6px 12px', fontFamily: 'Manrope' }}>Partager</button>
+          <button type="button" onClick={handleShare} className="active-scale" style={{ fontSize: 12, fontWeight: 600, color: '#FFFFFF', background: 'var(--cta-gradient)', borderRadius: 10, padding: '6px 12px', fontFamily: 'Poppins' }}>Partager</button>
         </div>
 
         {menuSections.map(section => (
           <div key={section.title} className="mb-4">
-            <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-3)', fontFamily: 'Manrope', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8, paddingLeft: 4 }}>{section.title}</p>
+            <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-3)', fontFamily: 'Poppins', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8, paddingLeft: 4 }}>{section.title}</p>
             <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}>
               {section.items.map((item, index) => (
                 <button key={item.label} type="button" onClick={() => navigate(item.path)} className="w-full flex items-center gap-3 px-4 py-3.5 active-scale" style={{ background: '#fff', borderBottom: index < section.items.length - 1 ? '1px solid var(--border)' : 'none' }}>
                   <span className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'var(--gold-light)', color: 'var(--gold)', border: '1px solid var(--gold-border)' }}><MenuIcon name={item.icon} /></span>
                   <div className="flex-1 text-left min-w-0">
-                    <p className="truncate" style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{item.label}</p>
-                    <p className="truncate" style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{item.sub}</p>
+                    <p className="truncate" style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Poppins' }}>{item.label}</p>
+                    <p className="truncate" style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Poppins' }}>{item.sub}</p>
                   </div>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
                 </button>
@@ -221,7 +221,7 @@ export default function ProfilePage() {
           </div>
         ))}
 
-        <button type="button" disabled={isLoggingOut} onClick={handleLogout} className="w-full mt-1 mb-6 py-3.5 rounded-2xl active-scale" style={{ background: 'rgba(239,68,68,0.07)', color: '#DC2626', fontSize: 13, fontWeight: 600, fontFamily: 'Manrope', border: '1px solid rgba(239,68,68,0.18)', opacity: isLoggingOut ? 0.65 : 1 }}>{isLoggingOut ? 'Déconnexion...' : 'Se déconnecter'}</button>
+        <button type="button" disabled={isLoggingOut} onClick={handleLogout} className="w-full mt-1 mb-6 py-3.5 rounded-2xl active-scale" style={{ background: 'rgba(239,68,68,0.07)', color: '#DC2626', fontSize: 13, fontWeight: 600, fontFamily: 'Poppins', border: '1px solid rgba(239,68,68,0.18)', opacity: isLoggingOut ? 0.65 : 1 }}>{isLoggingOut ? 'Déconnexion...' : 'Se déconnecter'}</button>
       </div>
     </div>
   )

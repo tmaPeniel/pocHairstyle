@@ -44,7 +44,7 @@ export default function SearchBar({ placeholder = 'Quelle coiffure veux-tu ?', o
             background: 'var(--surface)',
             color: 'var(--text-1)',
             border: '1.5px solid var(--border)',
-            fontFamily: 'Manrope',
+            fontFamily: 'Poppins',
             caretColor: 'var(--gold)',
             boxShadow: 'var(--shadow-sm)',
           }}

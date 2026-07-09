@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
-import services from '../data/services.json'
+import { services } from '../data/catalog'
 import hairstylists from '../data/hairstylists.json'
 
-const TIMES = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00']
-const UNAVAILABLE = new Set(['12:00', '13:00'])
+const TIMES = ['09:00', '11:00', '13:00', '15:00', '17:00']
+const UNAVAILABLE = new Set<string>()
 
 const DAY  = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam']
 const MONTH = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc']
@@ -25,26 +25,25 @@ export default function BookingPage() {
   const service = services.find(s => s.id === serviceId)
   const stylist = hairstylists.find(s => s.id === stylistId)
 
-  const dates = getDates(14)
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
-  const [selectedTime, setSelectedTime] = useState<string | null>(null)
-  const [address, setAddress]   = useState('')
+  const dates = getDates(5)
+  const [selectedDate, setSelectedDate] = useState<Date | null>(dates[1])
+  const [selectedTime, setSelectedTime] = useState<string | null>('11:00')
   const [notes, setNotes]       = useState('')
 
-  const canContinue = !!(selectedDate && selectedTime && address.trim())
+  const canContinue = !!(selectedDate && selectedTime)
 
   const params = new URLSearchParams({
     serviceId:  serviceId ?? '',
     stylistId:  stylistId ?? '',
     date:       selectedDate?.toISOString() ?? '',
     time:       selectedTime ?? '',
-    address,
+    address: 'À confirmer avec la coiffeuse',
     notes,
   })
 
   return (
     <div className="pb-28" style={{ background: 'var(--bg)' }}>
-      <Header title="Choisir un créneau" showBack />
+      <Header title="Réservation" showBack />
 
       <div className="px-4 pt-3">
 
@@ -54,23 +53,23 @@ export default function BookingPage() {
             className="flex items-center gap-3 p-3.5 rounded-2xl mb-6"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
           >
-            <img src={service.image} alt={service.name} className="w-12 h-12 rounded-full object-cover flex-shrink-0" />
+            <img src={service.image} alt={service.name} className="w-14 h-14 rounded-xl object-cover flex-shrink-0" />
             <div className="flex-1 min-w-0">
-              <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
+              <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Poppins' }}>
                 {service.name}
               </p>
-              <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>
+              <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Poppins' }}>
                 avec {stylist.name} · {service.duration}
               </p>
             </div>
-            <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Manrope' }}>
-              {service.price}€
+            <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Poppins' }}>
+              {new Intl.NumberFormat('fr-FR').format(service.price)} FCFA
             </span>
           </div>
         )}
 
         {/* Date selector */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 12 }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Poppins', marginBottom: 12 }}>
           Choisir une date
         </h2>
         <div className="flex gap-2.5 overflow-x-auto no-scrollbar pb-0.5 mb-6">
@@ -88,13 +87,13 @@ export default function BookingPage() {
                   boxShadow: isSelected ? '0 4px 14px rgba(196,69,115,0.28)' : 'var(--shadow-sm)',
                 }}
               >
-                <span style={{ fontSize: 10, fontWeight: 500, fontFamily: 'Manrope', color: isSelected ? '#1A1A1A' : 'var(--text-3)', marginBottom: 2 }}>
+                <span style={{ fontSize: 10, fontWeight: 500, fontFamily: 'Poppins', color: isSelected ? '#1A1A1A' : 'var(--text-3)', marginBottom: 2 }}>
                   {DAY[d.getDay()]}
                 </span>
-                <span style={{ fontSize: 17, fontWeight: 800, fontFamily: 'Manrope', color: isSelected ? '#1A1A1A' : 'var(--text-1)' }}>
+                <span style={{ fontSize: 17, fontWeight: 800, fontFamily: 'Poppins', color: isSelected ? '#1A1A1A' : 'var(--text-1)' }}>
                   {d.getDate()}
                 </span>
-                <span style={{ fontSize: 10, fontFamily: 'Manrope', color: isSelected ? '#1A1A1A' : 'var(--text-3)' }}>
+                <span style={{ fontSize: 10, fontFamily: 'Poppins', color: isSelected ? '#1A1A1A' : 'var(--text-3)' }}>
                   {MONTH[d.getMonth()]}
                 </span>
               </button>
@@ -103,10 +102,10 @@ export default function BookingPage() {
         </div>
 
         {/* Time selector */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 12 }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Poppins', marginBottom: 12 }}>
           Choisir un horaire
         </h2>
-        <div className="grid grid-cols-3 gap-2 mb-6">
+        <div className="grid grid-cols-5 gap-2 mb-6">
           {TIMES.map(time => {
             const isUnavailable = UNAVAILABLE.has(time)
             const isSelected    = selectedTime === time
@@ -119,7 +118,7 @@ export default function BookingPage() {
                 style={{
                   fontSize: 13,
                   fontWeight: 600,
-                  fontFamily: 'Manrope',
+                  fontFamily: 'Poppins',
                   background: isUnavailable ? 'var(--surface-2)'
                     : isSelected ? 'var(--cta-gradient)'
                     : 'var(--surface)',
@@ -135,7 +134,7 @@ export default function BookingPage() {
                   <span
                     style={{
                       position: 'absolute', bottom: 2, left: '50%', transform: 'translateX(-50%)',
-                      fontSize: 8, color: 'var(--text-3)', fontFamily: 'Manrope',
+                      fontSize: 8, color: 'var(--text-3)', fontFamily: 'Poppins',
                     }}
                   >
                     Complet
@@ -146,36 +145,8 @@ export default function BookingPage() {
           })}
         </div>
 
-        {/* Address */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 8 }}>
-          Adresse d'intervention <span style={{ color: '#DC2626' }}>*</span>
-        </h2>
-        <div className="relative mb-4">
-          <div className="absolute left-3.5 top-3.5 pointer-events-none">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2">
-              <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-          </div>
-          <input
-            type="text"
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-            placeholder="Ex : 12 rue de la Paix, Paris 75001"
-            className="w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm outline-none"
-            style={{
-              background: 'var(--surface)',
-              color: 'var(--text-1)',
-              border: `1.5px solid ${address ? 'var(--gold)' : 'var(--border)'}`,
-              fontFamily: 'Manrope',
-              caretColor: 'var(--gold)',
-              boxShadow: 'var(--shadow-sm)',
-            }}
-          />
-        </div>
-
         {/* Notes */}
-        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 8 }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Poppins', marginBottom: 8 }}>
           Informations complémentaires
           <span style={{ fontSize: 11, fontWeight: 400, color: 'var(--text-3)', marginLeft: 6 }}>(optionnel)</span>
         </h2>
@@ -189,7 +160,7 @@ export default function BookingPage() {
             background: 'var(--surface)',
             color: 'var(--text-1)',
             border: '1.5px solid var(--border)',
-            fontFamily: 'Manrope',
+            fontFamily: 'Poppins',
             caretColor: 'var(--gold)',
             boxShadow: 'var(--shadow-sm)',
           }}
@@ -209,8 +180,8 @@ export default function BookingPage() {
         }}
       >
         {!canContinue && (
-          <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope', textAlign: 'center', marginBottom: 8 }}>
-            {!selectedDate ? '📅 Sélectionne une date' : !selectedTime ? '🕙 Sélectionne un horaire' : '📍 Ajoute ton adresse'}
+          <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Poppins', textAlign: 'center', marginBottom: 8 }}>
+            {!selectedDate ? '📅 Sélectionne une date' : '🕙 Sélectionne un horaire'}
           </p>
         )}
         <button
@@ -223,12 +194,12 @@ export default function BookingPage() {
             color: canContinue ? '#1A1A1A' : 'var(--text-3)',
             fontSize: 15,
             fontWeight: 700,
-            fontFamily: 'Manrope',
+            fontFamily: 'Poppins',
             border: canContinue ? 'none' : '1.5px solid var(--border)',
             boxShadow: canContinue ? '0 4px 20px rgba(196,69,115,0.32)' : 'none',
           }}
         >
-          Continuer →
+          Confirmer la réservation
         </button>
       </div>
     </div>

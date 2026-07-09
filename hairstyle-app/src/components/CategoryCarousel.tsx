@@ -41,7 +41,7 @@ export default function CategoryCarousel({ selected, onSelect }: CategoryCarouse
                   fontSize: 11,
                   fontWeight: isSelected ? 600 : 400,
                   color: isSelected ? 'var(--gold)' : 'var(--text-2)',
-                  fontFamily: 'Manrope',
+                  fontFamily: 'Poppins',
                 }}
               >
                 {cat.name}

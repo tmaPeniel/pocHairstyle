@@ -35,13 +35,12 @@ export default function Header({ title, showBack = false, transparent = false, a
           </svg>
         </button>
       ) : showBrand ? (
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl gold-gradient flex items-center justify-center shadow-sm">
-            <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: 13, fontFamily: 'Fraunces' }}>H</span>
-          </div>
-          <span style={{ fontWeight: 800, fontSize: 17, color: 'var(--text-1)', fontFamily: 'Fraunces' }}>
-            Hairly
-          </span>
+        <div
+          className="grid h-11 w-11 place-items-center rounded-xl bg-white shadow-sm"
+          aria-label="Ub’Hair"
+          style={{ border: '1px solid var(--border)' }}
+        >
+          <img src="/images/ubhair-symbol-transparent.png" alt="" className="h-9 w-9 object-contain" />
         </div>
       ) : (
         <span aria-hidden="true" className="w-9 h-9" />

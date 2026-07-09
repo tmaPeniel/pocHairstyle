@@ -1,306 +1,84 @@
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
-import services from '../data/services.json'
-import hairstylists from '../data/hairstylists.json'
-import reviews from '../data/reviews.json'
+import { useState } from 'react'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { formatFcfa, services } from '../data/catalog'
 import { toggleId, useDemoFavorites } from '../lib/demoStore'
-import InitialsAvatar from '../components/InitialsAvatar'
 
-const MONTH = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc']
-
-const INCLUDED = [
-  'Déplacement à votre domicile',
-  'Produits professionnels inclus',
-  'Conseils personnalisés',
-  'Finitions soignées',
-]
-
-function Stars({ rating }: { rating: number }) {
-  return (
-    <span>
-      {[1,2,3,4,5].map(i => (
-        <span key={i} style={{ color: i <= rating ? '#F59E0B' : '#E5E7EB', fontSize: 12 }}>★</span>
-      ))}
-    </span>
-  )
-}
+const LENGTHS = ['Courte', 'Moyenne', 'Longue', 'Extra longue']
+const COLORS = ['#171717', '#3D251B', '#613517', '#E7A74C', '#B85D21', '#6E101B']
 
 export default function ServicePage() {
   const { id } = useParams()
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
+  const [length, setLength] = useState('Longue')
+  const [color, setColor] = useState(COLORS[0])
+  const [photoIndex, setPhotoIndex] = useState(0)
   const [favorites, setFavorites] = useDemoFavorites()
+  const service = services.find(item => item.id === id)
   const stylistId = searchParams.get('stylistId')
 
-  const service = services.find(s => s.id === id)
-  const isFavorite = id ? favorites.serviceIds.includes(id) : false
-  const stylist = hairstylists.find(s => s.id === stylistId)
-  const serviceReviews = reviews.filter(r => r.serviceId === id)
-
-  // Related services (same category, different id)
-  const related = services.filter(s => s.category === service?.category && s.id !== id).slice(0, 3)
-
-  if (!service) return null
+  if (!service || !id) return null
+  const liked = favorites.serviceIds.includes(id)
 
   return (
-    <div className="pb-28" style={{ background: 'var(--bg)' }}>
-
-      {/* Hero */}
-      <div className="relative" style={{ height: 280 }}>
-        <img src={service.image} alt={service.name} className="w-full h-full object-cover" />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%)' }} />
-        <button
-          onClick={() => navigate(-1)}
-          className="absolute top-4 left-4 w-9 h-9 flex items-center justify-center rounded-full active-scale"
-          style={{ background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.3)' }}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2">
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
+    <main className="min-h-[100svh] pb-24" style={{ background: '#FFF8F0' }}>
+      <section className="relative h-[330px]">
+        <img src={service.gallery[photoIndex]} alt={`${service.name} — photo ${photoIndex + 1}`} className="h-full w-full object-cover object-top" />
+        <button type="button" onClick={() => navigate(-1)} aria-label="Retour" className="absolute left-4 top-5 grid h-9 w-9 place-items-center rounded-full bg-white/80 active-scale">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" strokeWidth="1.8"><path d="M19 12H5m7 7-7-7 7-7" /></svg>
         </button>
-        <button
-          type="button"
-          aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
-          onClick={() => {
-            if (!id) return
-            setFavorites(current => ({
-              ...current,
-              serviceIds: toggleId(current.serviceIds, id),
-            }))
-          }}
-          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full active-scale"
-          style={{
-            background: isFavorite ? 'rgba(196,69,115,0.92)' : 'rgba(255,255,255,0.2)',
-            backdropFilter: 'blur(8px)',
-            border: isFavorite ? '1px solid rgba(255,255,255,0.75)' : '1px solid rgba(255,255,255,0.3)',
-          }}
-        >
-          <svg width="17" height="17" viewBox="0 0 24 24" fill={isFavorite ? 'white' : 'none'} stroke="white" strokeWidth="2">
-            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-          </svg>
-        </button>
-        {/* Title on image */}
-        <div className="absolute bottom-5 left-5 right-5">
-          <span
-            style={{
-              fontSize: 10, fontWeight: 700, color: '#C44573',
-              background: 'rgba(196,69,115,0.18)', border: '1px solid rgba(196,69,115,0.32)',
-              borderRadius: 99, padding: '2px 10px', fontFamily: 'Manrope', display: 'inline-block', marginBottom: 6,
-            }}
-          >
-            {service.category}
-          </span>
-          <h1 style={{ fontSize: 22, fontWeight: 800, color: '#fff', fontFamily: 'Manrope', lineHeight: 1.2 }}>
-            {service.name}
-          </h1>
-          <div className="flex items-center gap-2 mt-1.5">
-            <span style={{ color: '#F59E0B', fontSize: 13 }}>★</span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#fff', fontFamily: 'Manrope' }}>
-              {serviceReviews.length > 0
-                ? (serviceReviews.reduce((a, r) => a + r.rating, 0) / serviceReviews.length).toFixed(1)
-                : '4.9'}
-            </span>
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', fontFamily: 'Manrope' }}>
-              ({serviceReviews.length} avis)
-            </span>
-            <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12 }}>·</span>
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontFamily: 'Manrope' }}>{service.duration}</span>
-          </div>
+        <div className="absolute right-4 top-5 flex gap-2">
+          <button type="button" aria-label={liked ? 'Retirer des favoris' : 'Ajouter aux favoris'} onClick={() => setFavorites(current => ({ ...current, serviceIds: toggleId(current.serviceIds, id) }))} className="grid h-9 w-9 place-items-center rounded-full bg-white/80 active-scale">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill={liked ? '#5B2A6F' : 'none'} stroke="#1F1F1F" strokeWidth="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z" /></svg>
+          </button>
+          <button type="button" aria-label="Partager" className="grid h-9 w-9 place-items-center rounded-full bg-white/80 active-scale">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1F1F1F" strokeWidth="1.8"><path d="M12 16V3m0 0L7 8m5-5 5 5" /><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>
+          </button>
         </div>
-      </div>
+        {service.gallery.length > 1 && (
+          <>
+            <button type="button" onClick={() => setPhotoIndex(current => (current - 1 + service.gallery.length) % service.gallery.length)} aria-label="Photo précédente" className="absolute bottom-3 left-4 grid h-7 w-7 place-items-center rounded-full bg-black/55 text-white active-scale">‹</button>
+            <button type="button" onClick={() => setPhotoIndex(current => (current + 1) % service.gallery.length)} aria-label="Photo suivante" className="absolute bottom-3 right-14 grid h-7 w-7 place-items-center rounded-full bg-black/55 text-white active-scale">›</button>
+          </>
+        )}
+        <span className="absolute bottom-3 right-3 rounded-full bg-black/60 px-2 py-1 text-[9px] text-white">{photoIndex + 1}/{service.gallery.length}</span>
+      </section>
 
-      <div className="px-4 pt-4">
-
-        {/* Price + duration cards */}
-        <div className="grid grid-cols-2 gap-3 mb-5">
-          <div
-            className="p-4 rounded-2xl flex flex-col items-center"
-            style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
-          >
-            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 4 }}>Prix</p>
-            <p style={{ fontSize: 24, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Manrope' }}>
-              {service.price}€
-            </p>
-            <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>tout inclus</p>
-          </div>
-          <div
-            className="p-4 rounded-2xl flex flex-col items-center"
-            style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
-          >
-            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 4 }}>Durée</p>
-            <p style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
-              {service.duration.split('-')[0]}h
-            </p>
-            <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>environ</p>
-          </div>
+      <section className="-mt-4 rounded-t-[22px] bg-[#FFF8F0] px-4 pb-8 pt-5">
+        <div className="flex items-start justify-between gap-3">
+          <h1 className="text-[24px] font-extrabold">{service.name}</h1>
+          <p className="pt-1 text-right text-[8px] text-[#756B65]">à partir de<br /><strong className="text-[15px] text-[#B88900]">{formatFcfa(service.price)}</strong></p>
         </div>
-
-        {/* Description */}
-        <div
-          className="p-4 rounded-2xl mb-4"
-          style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-        >
-          <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 8 }}>
-            Description
-          </h2>
-          <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--text-2)', fontFamily: 'Manrope' }}>
-            {service.description}
-          </p>
+        <div className="mt-2 flex items-center gap-2 text-[9px] text-[#554E4A]">
+          <span className="font-semibold">★ 4,8 (128 avis)</span><span>│</span><span>◷ {service.duration}</span><span>│</span><span>♢ Protection</span>
         </div>
+        <p className="mt-4 text-[11px] leading-5 text-[#554E4A]">{service.description}</p>
 
-        {/* Ce qui est inclus */}
-        <div
-          className="p-4 rounded-2xl mb-4"
-          style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-        >
-          <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
-            Ce qui est inclus
-          </h2>
-          <div className="flex flex-col gap-2.5">
-            {INCLUDED.map(item => (
-              <div key={item} className="flex items-center gap-2.5">
-                <div
-                  className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'var(--cta-gradient)' }}
-                >
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <span style={{ fontSize: 13, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{item}</span>
-              </div>
+        <div className="mt-5">
+          <h2 className="mb-2 text-[11px] font-bold">Longueur</h2>
+          <div className="flex gap-2">
+            {LENGTHS.map(item => (
+              <button key={item} type="button" onClick={() => setLength(item)} className="flex-1 rounded-full border px-2 py-2 text-[8px] font-medium active-scale" style={{ background: length === item ? '#5B0B62' : 'white', color: length === item ? 'white' : '#3C3632', borderColor: length === item ? '#5B0B62' : '#E7DACA' }}>{item}</button>
             ))}
           </div>
         </div>
 
-        {/* Stylist selected */}
-        {stylist && (
-          <div
-            className="p-4 rounded-2xl mb-4"
-            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-          >
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
-              Coiffeuse sélectionnée
-            </h2>
-            <div className="flex items-center gap-3">
-              <InitialsAvatar name={stylist.name} className="w-12 h-12 rounded-full" textStyle={{ fontSize: 14 }} />
-              <div className="flex-1">
-                <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
-                  {stylist.name}
-                </p>
-                <div className="flex items-center gap-1 mt-0.5">
-                  <span style={{ color: '#F59E0B', fontSize: 12 }}>★</span>
-                  <span style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Manrope' }}>
-                    {stylist.rating} · {stylist.city}
-                  </span>
-                </div>
-              </div>
-              <button
-                onClick={() => navigate(`/hairstylist/${stylist.id}`)}
-                style={{
-                  fontSize: 12, fontWeight: 600, color: 'var(--gold)',
-                  background: 'var(--gold-light)', border: '1px solid var(--gold-border)',
-                  borderRadius: 10, padding: '6px 12px', fontFamily: 'Manrope',
-                }}
-                className="active-scale"
-              >
-                Profil
-              </button>
-            </div>
+        <div className="mt-5">
+          <h2 className="mb-2 text-[11px] font-bold">Couleur des mèches</h2>
+          <div className="flex items-center gap-3">
+            {COLORS.map(item => (
+              <button key={item} type="button" onClick={() => setColor(item)} aria-label={`Couleur ${item}`} className="h-7 w-7 rounded-full active-scale" style={{ background: item, outline: color === item ? '2px solid #D4AF37' : 'none', outlineOffset: 2 }} />
+            ))}
+            <button type="button" className="grid h-7 w-7 place-items-center rounded-full bg-[#F1E8DE] text-sm">+</button>
           </div>
-        )}
+        </div>
+      </section>
 
-        {/* Avis */}
-        {serviceReviews.length > 0 && (
-          <div className="mb-4">
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
-              Avis clients
-            </h2>
-            <div className="flex flex-col gap-3">
-              {serviceReviews.slice(0, 3).map(r => {
-                const d = new Date(r.date)
-                return (
-                  <div
-                    key={r.id}
-                    className="p-3.5 rounded-2xl"
-                    style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-                  >
-                    <div className="flex items-center gap-2.5 mb-2">
-                      <img src={r.avatar} alt={r.author} className="w-8 h-8 rounded-full object-cover" />
-                      <div className="flex-1">
-                        <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope' }}>
-                          {r.author}
-                        </p>
-                        <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>
-                          {d.getDate()} {MONTH[d.getMonth()]} {d.getFullYear()}
-                        </p>
-                      </div>
-                      <Stars rating={r.rating} />
-                    </div>
-                    <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--text-2)', fontFamily: 'Manrope' }}>
-                      "{r.comment}"
-                    </p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Services similaires */}
-        {related.length > 0 && (
-          <div className="mb-6">
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-1)', fontFamily: 'Manrope', marginBottom: 10 }}>
-              Services similaires
-            </h2>
-            <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-              {related.map(s => (
-                <div
-                  key={s.id}
-                  onClick={() => navigate(`/service/${s.id}?stylistId=${stylistId}`)}
-                  className="flex-shrink-0 w-32 rounded-2xl overflow-hidden cursor-pointer active-scale"
-                  style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}
-                >
-                  <div style={{ height: 80 }}>
-                    <InitialsAvatar name={s.name} className="w-full h-full" textStyle={{ fontSize: 24 }} />
-                  </div>
-                  <div className="p-2">
-                    <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-1)', fontFamily: 'Manrope' }} className="truncate">
-                      {s.name}
-                    </p>
-                    <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--gold)', fontFamily: 'Manrope' }}>{s.price}€</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Sticky CTA */}
-      <div
-        className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] px-4 py-3 z-40"
-        style={{
-          background: 'rgba(255,255,255,0.96)',
-          backdropFilter: 'blur(12px)',
-          borderTop: '1px solid var(--border)',
-          paddingBottom: 'env(safe-area-inset-bottom, 12px)',
-        }}
-      >
-        <button
-          onClick={() => navigate(`/booking?serviceId=${id}&stylistId=${stylistId}`)}
-          className="w-full py-4 rounded-2xl active-scale flex items-center justify-center gap-2"
-          style={{
-            background: 'var(--cta-gradient)',
-            color: '#1A1A1A',
-            fontSize: 15,
-            fontWeight: 700,
-            fontFamily: 'Manrope',
-            boxShadow: '0 4px 20px rgba(196,69,115,0.32)',
-          }}
-        >
-          Réserver ce service — {service.price}€ →
+      <div className="fixed bottom-0 left-1/2 z-40 w-full max-w-[430px] -translate-x-1/2 border-t border-[#E7DACA] bg-white/95 px-4 py-3 backdrop-blur">
+        <button type="button" onClick={() => navigate(stylistId ? `/booking?serviceId=${id}&stylistId=${stylistId}` : `/hairstylists?category=${encodeURIComponent(service.category)}&serviceId=${id}`)} className="w-full rounded-xl bg-[#D4AF37] py-3.5 text-[12px] font-bold text-[#1F1F1F] active-scale">
+          Choisir une coiffeuse
         </button>
       </div>
-    </div>
+    </main>
   )
 }

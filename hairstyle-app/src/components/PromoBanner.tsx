@@ -22,16 +22,16 @@ export default function PromoBanner() {
               border: '1px solid rgba(255,255,255,0.32)',
             }}
           >
-            <span style={{ fontSize: 11, fontWeight: 700, color: '#FFFFFF', fontFamily: 'Manrope' }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: '#FFFFFF', fontFamily: 'Poppins' }}>
               Offre du moment
             </span>
           </div>
 
-          <h3 style={{ fontSize: 21, fontWeight: 800, color: '#fff', lineHeight: 1.13, marginBottom: 5, fontFamily: 'Fraunces' }}>
+          <h3 style={{ fontSize: 21, fontWeight: 800, color: '#fff', lineHeight: 1.13, marginBottom: 5, fontFamily: 'Playfair Display' }}>
             <span style={{ color: '#FFE1EA' }}>-20%</span> sur<br />les tresses
           </h3>
 
-          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.72)', marginBottom: 14, fontFamily: 'Manrope' }}>
+          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.72)', marginBottom: 14, fontFamily: 'Poppins' }}>
             Du 25 au 30 mars 2026
           </p>
 
@@ -43,7 +43,7 @@ export default function PromoBanner() {
               color: '#9F2E5B',
               fontSize: 12,
               fontWeight: 700,
-              fontFamily: 'Manrope',
+              fontFamily: 'Poppins',
               boxShadow: '0 6px 18px rgba(91,32,56,0.18)',
             }}
           >

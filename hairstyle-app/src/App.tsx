@@ -13,22 +13,20 @@ import ReservationsPage from './pages/ReservationsPage'
 import ProfilePage from './pages/ProfilePage'
 import NotificationsPage from './pages/NotificationsPage'
 import ProfileDetailPage from './pages/ProfileDetailPage'
+import FavoritesPage from './pages/FavoritesPage'
+import SearchResultsPage from './pages/SearchResultsPage'
 
-const SHOW_NAV_PATHS = ['/', '/hairstyles', '/hairstylists', '/reservations', '/profile']
+const SHOW_NAV_PATHS = ['/', '/hairstyles', '/hairstylists', '/reservations', '/profile', '/profile/favorites']
 
 function SplashScreen() {
   return (
     <div
-      aria-label="Chargement Hairly"
+      aria-label="Chargement Ub’Hair"
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center px-8 splash-screen"
-      style={{ background: 'radial-gradient(circle at 50% 30%, rgba(252,238,243,0.95) 0%, rgba(255,247,249,1) 46%, #FFFFFF 100%)' }}
+      style={{ background: 'radial-gradient(circle at 50% 30%, #FFF8F0 0%, #F8EFE4 52%, #FFFFFF 100%)' }}
     >
-      <div className="w-24 h-24 rounded-[28px] gold-gradient flex items-center justify-center shadow-lg splash-logo" style={{ boxShadow: '0 18px 45px rgba(196,69,115,0.22)' }}>
-        <span style={{ color: '#FFFFFF', fontWeight: 900, fontSize: 42, fontFamily: 'Fraunces', lineHeight: 1 }}>H</span>
-      </div>
-      <p style={{ marginTop: 18, fontWeight: 900, fontSize: 34, color: 'var(--text-1)', fontFamily: 'Fraunces', lineHeight: 1 }}>Hairly</p>
-      <p style={{ marginTop: 6, fontWeight: 700, fontSize: 12, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{'Beaut\u00e9 afro \u00e0 port\u00e9e de main'}</p>
-      <div className="w-40 h-1.5 rounded-full overflow-hidden mt-8" style={{ background: 'var(--surface-2)' }}>
+      <img src="/images/ubhair-logo-transparent.png" alt="Ub’Hair — Coiffe ta couronne, honore ton héritage" className="h-[350px] w-[250px] object-contain splash-logo" />
+      <div className="w-40 h-1.5 rounded-full overflow-hidden mt-5" style={{ background: 'var(--surface-2)' }}>
         <div className="h-full rounded-full splash-progress" style={{ background: 'var(--cta-gradient)' }} />
       </div>
     </div>
@@ -52,7 +50,9 @@ function AppLayout() {
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/reservations" element={<ReservationsPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/search" element={<SearchResultsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/favorites" element={<FavoritesPage />} />
         <Route path="/profile/:section" element={<ProfileDetailPage />} />
       </Routes>
       {!hideNav && <BottomNav />}

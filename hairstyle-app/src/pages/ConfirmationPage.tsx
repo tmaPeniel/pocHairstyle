@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
-import services from '../data/services.json'
+import { services } from '../data/catalog'
 import hairstylists from '../data/hairstylists.json'
 
 const DAY_FR = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
@@ -17,8 +17,8 @@ function DetailRow({ icon, label, value }: { icon: ReactNode; label: string; val
     <div className="flex items-center gap-3 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
       <div className="w-9 h-9 flex items-center justify-center rounded-2xl" style={{ background: 'var(--surface-2)' }}>{icon}</div>
       <div className="flex-1 min-w-0">
-        <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 1 }}>{label}</p>
-        <p className="truncate" style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{value}</p>
+        <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Poppins', marginBottom: 1 }}>{label}</p>
+        <p className="truncate" style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Poppins' }}>{value}</p>
       </div>
     </div>
   )
@@ -58,20 +58,20 @@ export default function ConfirmationPage() {
         <div className="p-4 rounded-3xl mb-4" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 2 }}>Référence</p>
-              <p style={{ fontSize: 16, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope', letterSpacing: 0.5 }}>{BOOKING_REF}</p>
+              <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Poppins', marginBottom: 2 }}>Référence</p>
+              <p style={{ fontSize: 16, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Poppins', letterSpacing: 0.5 }}>{BOOKING_REF}</p>
             </div>
-            <span className="px-3 py-1 rounded-full" style={{ background: 'var(--primary-light)', color: 'var(--gold)', fontSize: 11, fontWeight: 800, fontFamily: 'Manrope' }}>À valider</span>
+            <span className="px-3 py-1 rounded-full" style={{ background: 'var(--primary-light)', color: 'var(--gold)', fontSize: 11, fontWeight: 800, fontFamily: 'Poppins' }}>À valider</span>
           </div>
 
           {service && (
             <div className="flex items-center gap-3 pb-4 mb-1" style={{ borderBottom: '1px solid var(--border)' }}>
               <img src={service.image} alt={service.name} className="w-14 h-14 rounded-2xl object-cover" />
               <div className="flex-1 min-w-0">
-                <p className="truncate" style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{service.name}</p>
-                <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{service.duration}</p>
+                <p className="truncate" style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Poppins' }}>{service.name}</p>
+                <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Poppins' }}>{service.duration}</p>
               </div>
-              <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{service.price}€</span>
+              <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Poppins' }}>{service.price}€</span>
             </div>
           )}
 
@@ -79,27 +79,27 @@ export default function ConfirmationPage() {
           {date && <DetailRow icon={<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="3" y1="10" x2="21" y2="10" /></svg>} label="Date" value={formatDate(date)} />}
           <DetailRow icon={<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>} label="Heure" value={time ?? '-'} />
           {address && <DetailRow icon={<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" /><circle cx="12" cy="10" r="3" /></svg>} label="Adresse" value={address} />}
-          {notes && <div className="pt-3"><p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope', marginBottom: 3 }}>Notes</p><p style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Manrope' }}>{notes}</p></div>}
+          {notes && <div className="pt-3"><p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Poppins', marginBottom: 3 }}>Notes</p><p style={{ fontSize: 12, color: 'var(--text-2)', fontFamily: 'Poppins' }}>{notes}</p></div>}
         </div>
 
         <div className="p-4 rounded-3xl" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-          <div className="flex justify-between mb-2"><span style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Manrope' }}>Service</span><span style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Manrope' }}>{service?.price ?? 0}€</span></div>
-          <div className="flex justify-between mb-3 pb-3" style={{ borderBottom: '1px solid var(--border)' }}><span style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Manrope' }}>Déplacement</span><span style={{ fontSize: 13, fontWeight: 800, color: '#15803D', fontFamily: 'Manrope' }}>Gratuit</span></div>
+          <div className="flex justify-between mb-2"><span style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Poppins' }}>Service</span><span style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-1)', fontFamily: 'Poppins' }}>{service?.price ?? 0}€</span></div>
+          <div className="flex justify-between mb-3 pb-3" style={{ borderBottom: '1px solid var(--border)' }}><span style={{ fontSize: 13, color: 'var(--text-2)', fontFamily: 'Poppins' }}>Déplacement</span><span style={{ fontSize: 13, fontWeight: 800, color: '#15803D', fontFamily: 'Poppins' }}>Gratuit</span></div>
           <div className="flex justify-between items-end">
             <div>
-              <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope' }}>Acompte</p>
-              <p style={{ fontSize: 22, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Manrope' }}>{deposit}€</p>
+              <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Poppins' }}>Acompte</p>
+              <p style={{ fontSize: 22, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Poppins' }}>{deposit}€</p>
             </div>
-            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Manrope' }}>{remaining}€ le jour J</p>
+            <p style={{ fontSize: 11, color: 'var(--text-3)', fontFamily: 'Poppins' }}>{remaining}€ le jour J</p>
           </div>
         </div>
       </div>
 
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] px-4 py-3 z-40" style={{ background: 'rgba(255,255,255,0.94)', backdropFilter: 'blur(14px)', borderTop: '1px solid var(--border)', paddingBottom: 'env(safe-area-inset-bottom, 12px)' }}>
-        <button onClick={handlePay} disabled={isPaying} className="w-full py-4 rounded-2xl active-scale" style={{ background: isPaying ? 'var(--surface-2)' : 'var(--cta-gradient)', color: isPaying ? 'var(--text-3)' : '#FFFFFF', fontSize: 15, fontWeight: 800, fontFamily: 'Manrope', border: 'none' }}>
+        <button onClick={handlePay} disabled={isPaying} className="w-full py-4 rounded-2xl active-scale" style={{ background: isPaying ? 'var(--surface-2)' : 'var(--cta-gradient)', color: isPaying ? 'var(--text-3)' : '#FFFFFF', fontSize: 15, fontWeight: 800, fontFamily: 'Poppins', border: 'none' }}>
           {isPaying ? 'Validation...' : `Payer ${deposit}€`}
         </button>
-        <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Manrope', textAlign: 'center', marginTop: 6 }}>Sécurisé · Annulable 48h avant</p>
+        <p style={{ fontSize: 10, color: 'var(--text-3)', fontFamily: 'Poppins', textAlign: 'center', marginTop: 6 }}>Sécurisé · Annulable 48h avant</p>
       </div>
     </div>
   )

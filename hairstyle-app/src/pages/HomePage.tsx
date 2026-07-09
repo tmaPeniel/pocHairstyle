@@ -1,6 +1,6 @@
 import { type FormEvent, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { categories, formatFcfa, hairstyles } from '../data/catalog'
+import { categories, formatEuro, hairstyles } from '../data/catalog'
 import { searchCatalog, type SearchType } from '../lib/searchCatalog'
 
 const TYPE_OPTIONS: Array<{ value: SearchType; label: string }> = [
@@ -12,9 +12,9 @@ const TYPE_OPTIONS: Array<{ value: SearchType; label: string }> = [
 
 const PRICE_OPTIONS = [
   { value: null, label: 'Tous les prix' },
-  { value: 20000, label: '≤ 20 000' },
-  { value: 30000, label: '≤ 30 000' },
-  { value: 50000, label: '≤ 50 000' },
+  { value: 60, label: '≤ 60 €' },
+  { value: 100, label: '≤ 100 €' },
+  { value: 150, label: '≤ 150 €' },
 ] as const
 
 export default function HomePage() {
@@ -144,7 +144,7 @@ export default function HomePage() {
               <img src={style.image} alt={style.name} className="h-[112px] w-full object-cover" />
               <div className="p-2">
                 <p className="truncate text-[10px] font-bold">{style.name}</p>
-                <p className="mt-0.5 text-[8px] font-semibold text-[#5B2A6F]">dès {formatFcfa(style.startingPrice)}</p>
+                <p className="mt-0.5 text-[8px] font-semibold text-[#5B2A6F]">dès {formatEuro(style.startingPrice)}</p>
               </div>
             </button>
           ))}

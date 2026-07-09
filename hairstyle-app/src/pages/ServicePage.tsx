@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { formatFcfa, services } from '../data/catalog'
+import { formatEuro, services } from '../data/catalog'
 import { toggleId, useDemoFavorites } from '../lib/demoStore'
 
 const LENGTHS = ['Courte', 'Moyenne', 'Longue', 'Extra longue']
@@ -47,7 +47,7 @@ export default function ServicePage() {
       <section className="-mt-4 rounded-t-[22px] bg-[#FFF8F0] px-4 pb-8 pt-5">
         <div className="flex items-start justify-between gap-3">
           <h1 className="text-[24px] font-extrabold">{service.name}</h1>
-          <p className="pt-1 text-right text-[8px] text-[#756B65]">à partir de<br /><strong className="text-[15px] text-[#B88900]">{formatFcfa(service.price)}</strong></p>
+          <p className="pt-1 text-right text-[8px] text-[#756B65]">à partir de<br /><strong className="text-[15px] text-[#B88900]">{formatEuro(service.price)}</strong></p>
         </div>
         <div className="mt-2 flex items-center gap-2 text-[9px] text-[#554E4A]">
           <span className="font-semibold">★ 4,8 (128 avis)</span><span>│</span><span>◷ {service.duration}</span><span>│</span><span>♢ Protection</span>

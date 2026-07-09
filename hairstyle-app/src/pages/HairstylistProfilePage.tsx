@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import hairstylists from '../data/hairstylists.json'
-import { formatFcfa, hairstyles, services } from '../data/catalog'
+import { formatEuro, hairstyles, services } from '../data/catalog'
 import { toggleId, useDemoFavorites } from '../lib/demoStore'
 
 export default function HairstylistProfilePage() {
@@ -86,7 +86,7 @@ export default function HairstylistProfilePage() {
               <p className="text-[10px] text-[#8E8680]">Prochaine disponibilité</p>
               <p className="mt-0.5 text-[12px] font-bold">Demain · 11:00</p>
             </div>
-            <p className="text-right text-[10px] text-[#8E8680]">Prestations dès<br /><strong className="text-[12px] text-[#5B2A6F]">{formatFcfa(stylist.priceFrom)}</strong></p>
+            <p className="text-right text-[10px] text-[#8E8680]">Prestations dès<br /><strong className="text-[12px] text-[#5B2A6F]">{formatEuro(stylist.priceFrom)}</strong></p>
           </div>
         </div>
 
@@ -117,7 +117,7 @@ export default function HairstylistProfilePage() {
                   <img src={service.image} alt="" className="h-10 w-10 flex-shrink-0 rounded-lg object-cover" />
                   <span className="min-w-0">
                     <span className="block truncate text-[9px] font-bold">{service.name}</span>
-                    <span className="mt-0.5 block text-[8px] font-semibold text-[#5B2A6F]">{formatFcfa(service.price)}</span>
+                    <span className="mt-0.5 block text-[8px] font-semibold text-[#5B2A6F]">{formatEuro(service.price)}</span>
                   </span>
                   {selected && <span className="ml-auto grid h-4 w-4 flex-shrink-0 place-items-center rounded-full bg-[#5B2A6F] text-[9px] text-white">✓</span>}
                 </button>

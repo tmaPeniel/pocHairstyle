@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
-import { services } from '../data/catalog'
+import { formatEuro, services } from '../data/catalog'
 import hairstylists from '../data/hairstylists.json'
 
 const TIMES = ['09:00', '11:00', '13:00', '15:00', '17:00']
@@ -63,7 +63,7 @@ export default function BookingPage() {
               </p>
             </div>
             <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--gold)', fontFamily: 'Poppins' }}>
-              {new Intl.NumberFormat('fr-FR').format(service.price)} FCFA
+              {formatEuro(service.price)}
             </span>
           </div>
         )}

@@ -1,5 +1,5 @@
 import hairstylists from '../data/hairstylists.json'
-import { categories, formatFcfa, services } from '../data/catalog'
+import { categories, formatEuro, services } from '../data/catalog'
 
 export type SearchType = 'all' | 'cuts' | 'stylists' | 'categories'
 
@@ -30,7 +30,7 @@ export function searchCatalog(query: string, filters: SearchFilters): SearchResu
     id: `cut-${service.id}`,
     kind: 'cuts',
     title: service.name,
-    subtitle: `${service.category} · ${formatFcfa(service.price)}`,
+    subtitle: `${service.category} · ${formatEuro(service.price)}`,
     image: service.image,
     path: `/service/${service.id}`,
     category: service.category,

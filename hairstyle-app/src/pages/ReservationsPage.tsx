@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
-import { services } from '../data/catalog'
+import { formatEuro, services } from '../data/catalog'
 import { type DemoBooking, useDemoBookings } from '../lib/demoStore'
 
 const MONTH = ['jan', 'fév', 'mar', 'avr', 'mai', 'juin', 'juil', 'août', 'sep', 'oct', 'nov', 'déc']
@@ -20,8 +20,7 @@ function daysUntil(dateStr: string) {
 }
 
 function formatBookingPrice(value: number) {
-  if (value < 1000) return `${value}€`
-  return `${new Intl.NumberFormat('fr-FR').format(value)} FCFA`
+  return formatEuro(value)
 }
 
 function serviceImage(booking: DemoBooking) {

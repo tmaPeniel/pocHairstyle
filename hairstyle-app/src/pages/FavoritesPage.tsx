@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import hairstylists from '../data/hairstylists.json'
-import { formatFcfa, hairstyles, services } from '../data/catalog'
+import { formatEuro, hairstyles, services } from '../data/catalog'
 import { toggleId, useDemoFavorites } from '../lib/demoStore'
 
 type FavoriteTab = 'all' | 'stylists' | 'cuts'
@@ -97,7 +97,7 @@ export default function FavoritesPage() {
                     <img src={service.image} alt={service.name} className="h-28 w-full object-cover" />
                     <div className="p-2.5">
                       <p className="truncate text-[10px] font-bold">{service.name}</p>
-                      <p className="mt-1 text-[8px] font-semibold text-[#5B2A6F]">{formatFcfa(service.price)}</p>
+                      <p className="mt-1 text-[8px] font-semibold text-[#5B2A6F]">{formatEuro(service.price)}</p>
                     </div>
                   </button>
                   <button type="button" onClick={() => setFavorites(current => ({ ...current, serviceIds: toggleId(current.serviceIds, service.id) }))} className="w-full border-t border-[#E7DACA] py-2 text-[8px] font-semibold text-[#9B3C45]">Retirer des favoris</button>
@@ -109,7 +109,7 @@ export default function FavoritesPage() {
                     <img src={style.image} alt={style.name} className="h-28 w-full object-cover" />
                     <div className="p-2.5">
                       <p className="truncate text-[10px] font-bold">{style.name}</p>
-                      <p className="mt-1 text-[8px] font-semibold text-[#5B2A6F]">{formatFcfa(style.startingPrice)}</p>
+                      <p className="mt-1 text-[8px] font-semibold text-[#5B2A6F]">{formatEuro(style.startingPrice)}</p>
                     </div>
                   </button>
                   <button type="button" onClick={() => setFavorites(current => ({ ...current, hairstyleIds: toggleId(current.hairstyleIds, style.id) }))} className="w-full border-t border-[#E7DACA] py-2 text-[8px] font-semibold text-[#9B3C45]">Retirer des favoris</button>

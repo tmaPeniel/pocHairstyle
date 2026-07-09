@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { categories, formatFcfa, hairstyles } from '../data/catalog'
+import { categories, formatEuro, hairstyles } from '../data/catalog'
 
 export default function HairstyleListPage() {
   const navigate = useNavigate()
@@ -39,7 +39,7 @@ export default function HairstyleListPage() {
                 <img src={style.image} alt={style.name} className="h-[150px] w-full object-cover" />
                 <div className="p-3">
                   <p className="truncate text-[11px] font-bold">{style.name}</p>
-                  <p className="mt-1 text-[9px] font-semibold text-[#5B2A6F]">dès {formatFcfa(style.startingPrice)}</p>
+                  <p className="mt-1 text-[9px] font-semibold text-[#5B2A6F]">dès {formatEuro(style.startingPrice)}</p>
                   <p className="mt-1 text-[8px] text-[#8E8680]">★ {style.rating} · {style.duration}</p>
                 </div>
               </button>
